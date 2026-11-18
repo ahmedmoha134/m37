@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#FFF3DC">
+<title>مطبخ التاء — الشيف تميم وميدالية الشيف المتميز</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;600;700;800&family=Rakkas&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FFF3DC;--cream2:#F7E4C3;--paper:#FFFBF2;--paper-d:#EFDCBB;
+  --terra:#E2543A;--terra-d:#B03A26;--terra-l:#FF8A6E;
+  --mint:#37B79A;--mint-d:#1F8871;--mint-l:#8FE0CD;
+  --copper:#C87A3C;--copper-d:#8A4E22;--gold:#FFC24A;--gold-l:#FFE3A0;
+  --cocoa:#3A2418;--cocoa2:#5C4030;--dim:#9A7C63;
+  --berry:#E0447E;--berry-d:#A82C5C;
+  --herb:#6FBF4A;--herb-d:#4A8F2E;
+  --steam:#7FD4E8;--steam-d:#3E9EB8;
+  --wood:#B5793F;--wood-d:#8A5628;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scrollbar-color:var(--copper) var(--cream2);scrollbar-width:thin}
+body{
+  font-family:'Baloo Bhaijaan 2','Segoe UI',Tahoma,sans-serif;color:var(--cocoa);
+  background:linear-gradient(180deg,#FFE7BE 0%,#FFF3DC 34%,#F6DFB8 68%,#E9C79A 100%) fixed;
+  min-height:100dvh;overflow-x:hidden;touch-action:manipulation;user-select:none;-webkit-user-select:none;
+}
+::-webkit-scrollbar{width:13px;height:13px}
+::-webkit-scrollbar-track{background:var(--cream2);border-radius:9px}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--copper),var(--copper-d));border-radius:9px;border:3px solid var(--cream2)}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(var(--gold),var(--copper))}
+[role=button]{cursor:pointer}
+[role=button]:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--mint);outline-offset:2px}
+button{font-family:inherit}
+
+/* ===== خلفية المطبخ ===== */
+.bg-stack{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.wall-tile{position:absolute;inset:0;opacity:.5;
+  background:
+   repeating-linear-gradient(90deg,transparent 0 74px,rgba(200,122,60,.16) 74px 78px),
+   repeating-linear-gradient(0deg,transparent 0 74px,rgba(200,122,60,.16) 74px 78px)}
+.sunbeam{position:absolute;top:-14%;left:-6%;width:64%;height:120%;
+  background:linear-gradient(122deg,rgba(255,226,150,.55),rgba(255,226,150,.06) 46%,transparent 62%);
+  filter:blur(6px);animation:beamBreathe 15s ease-in-out infinite alternate}
+@keyframes beamBreathe{to{transform:translateX(46px) skewX(-3deg);opacity:.75}}
+.warmblob{position:absolute;border-radius:50%;filter:blur(72px)}
+.wb1{width:420px;height:420px;top:-130px;right:-110px;background:radial-gradient(circle,#FFC24A,transparent 70%);opacity:.4;animation:drift1 30s ease-in-out infinite alternate}
+.wb2{width:380px;height:380px;bottom:-150px;left:-100px;background:radial-gradient(circle,#FF8A6E,transparent 70%);opacity:.3;animation:drift2 38s ease-in-out infinite alternate}
+@keyframes drift1{to{transform:translate(-60px,50px) scale(1.12)}}
+@keyframes drift2{to{transform:translate(70px,-50px) scale(1.1)}}
+.floor{position:absolute;bottom:0;left:0;right:0;height:20vh;min-height:120px;opacity:.5;
+  background:repeating-conic-gradient(from 0deg at 50% 50%,var(--terra) 0deg 90deg,var(--cream) 90deg 180deg) 0 0/72px 72px;
+  mask-image:linear-gradient(180deg,transparent,#000 42%);-webkit-mask-image:linear-gradient(180deg,transparent,#000 42%)}
+#bgcv{position:absolute;inset:0}
+.grain{position:fixed;inset:0;z-index:35;pointer-events:none;opacity:.05;background-size:170px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='170' height='170' filter='url(%23n)' opacity='0.7'/%3E%3C/svg%3E")}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes riseIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+@keyframes popIn{0%{transform:scale(.4);opacity:0}70%{transform:scale(1.12)}100%{transform:scale(1);opacity:1}}
+@keyframes shakeX{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+
+#app{position:relative;z-index:2;min-height:100dvh;display:flex;flex-direction:column}
+
+/* ===== الشريط العلوي ===== */
+header{position:sticky;top:0;z-index:30;background:rgba(255,251,242,.93);backdrop-filter:blur(8px);border-bottom:4px solid var(--copper);box-shadow:0 4px 18px rgba(140,90,40,.2)}
+.hud-in{max-width:1220px;margin:0 auto;display:flex;align-items:center;gap:11px;padding:8px 16px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:9px}
+.logo svg{width:38px;height:38px}
+.logo b{font-family:'Rakkas';font-size:23px;color:var(--terra-d);white-space:nowrap;line-height:1.1}
+.logo small{display:block;font-size:10.5px;color:var(--mint-d);font-weight:800;line-height:1;margin-top:-2px}
+.pips{display:flex;gap:7px;flex:1;justify-content:center;flex-wrap:wrap}
+.pip{display:flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;border:2px solid var(--paper-d);color:var(--dim);font-weight:700;font-size:13px;background:#fff;transition:.3s}
+.pip .n{width:22px;height:22px;border-radius:50%;background:var(--paper-d);color:#fff;display:grid;place-items:center;font-size:13px;flex:none}
+.pip.active{border-color:var(--terra);color:var(--terra-d);box-shadow:0 0 12px rgba(226,84,58,.24)}
+.pip.active .n{background:var(--terra)}
+.pip.done{border-color:var(--herb);color:var(--herb-d)}
+.pip.done .n{background:var(--herb)}
+.hud-ctrl{display:flex;align-items:center;gap:7px}
+.stars{display:flex;align-items:center;gap:6px;background:#FFF3D0;border:2px solid var(--gold);padding:5px 12px;border-radius:999px;color:#A56A00;font-weight:800;font-size:17px}
+.stars svg{width:20px;height:20px}
+.stars.pop{animation:starPop .35s}
+@keyframes starPop{40%{transform:scale(1.2)}}
+.hbtn{display:flex;gap:6px;align-items:center;background:#fff;border:2px solid var(--mint);color:var(--mint-d);border-radius:12px;padding:6px 12px;font-weight:700;font-size:14px;cursor:pointer;transition:.2s}
+.hbtn:hover{background:#EAF9F5;transform:translateY(-1px)}
+.hbtn svg{width:18px;height:18px;flex:none}
+.hbtn.muted{color:var(--dim);border-color:var(--paper-d)}
+
+/* ===== المسرح ===== */
+main{flex:1;width:100%;max-width:1120px;margin:0 auto;padding:18px 14px 26px;display:flex;flex-direction:column;align-items:center}
+#stage{width:100%;display:flex;flex-direction:column;align-items:center;gap:16px}
+#stage.shake{animation:shakeX .45s}
+.stage-head{text-align:center;animation:riseIn .5s both}
+.stage-chip{display:inline-block;background:#fff;border:2px solid var(--mint);color:var(--mint-d);border-radius:999px;padding:3px 16px;font-weight:700;font-size:14px}
+.stage-title{font-family:'Rakkas';font-size:clamp(30px,5.4vw,46px);color:var(--terra-d);text-shadow:0 2px 0 #fff;margin:2px 0;line-height:1.25}
+.stage-obj{color:var(--cocoa2);font-weight:600;font-size:clamp(14px,2.6vw,17px);max-width:700px;margin:0 auto}
+.target-chip{display:inline-flex;align-items:center;gap:8px;background:#FFF3D0;border:2px dashed var(--gold);border-radius:999px;padding:3px 14px;font-weight:700;color:#A56A00;margin-top:7px}
+.target-chip b{font-size:27px;color:var(--terra);line-height:1}
+
+/* ===== مشهد المطبخ ===== */
+.kitchen{position:relative;width:100%;max-width:1000px;border:5px solid var(--copper);border-radius:24px;overflow:hidden;background:var(--cream);
+  box-shadow:0 0 0 3px var(--copper-d),0 24px 48px rgba(140,90,40,.3),inset 0 2px 0 #fff;animation:riseIn .6s .08s both}
+.wall{position:relative;height:126px;background:linear-gradient(180deg,#FFE9C6,#FFF6E4);border-bottom:5px solid var(--wood);overflow:hidden}
+.wall::before{content:'';position:absolute;inset:0;opacity:.55;
+  background:repeating-linear-gradient(90deg,transparent 0 40px,rgba(200,122,60,.14) 40px 43px),
+             repeating-linear-gradient(0deg,transparent 0 40px,rgba(200,122,60,.14) 40px 43px)}
+.window{position:absolute;top:12px;left:16px;width:118px;height:92px}
+.window svg{width:100%;height:100%;display:block}
+.potrail{position:absolute;top:6px;right:14px;width:186px;height:104px}
+.potrail svg{width:100%;height:100%;display:block;overflow:visible}
+.hangpot{transform-box:view-box;animation:potSway 4.2s ease-in-out infinite}
+.hangpot.p2{animation-delay:.6s}.hangpot.p3{animation-delay:1.2s}
+@keyframes potSway{0%,100%{transform:rotate(-3.2deg)}50%{transform:rotate(3.2deg)}}
+.shelf{position:absolute;top:26px;right:50%;transform:translateX(50%);width:180px;height:76px}
+.shelf svg{width:100%;height:100%;display:block}
+.steamwisp{position:absolute;bottom:8px;width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.75);filter:blur(3px);animation:wisp 4.6s ease-in infinite}
+@keyframes wisp{0%{transform:translateY(0) scale(.5);opacity:0}22%{opacity:.85}100%{transform:translateY(-74px) translateX(14px) scale(2.1);opacity:0}}
+.station{position:relative;padding:16px 16px 20px;background:linear-gradient(180deg,#FFFBF2,#FFF3DC 62%,#F7E4C3)}
+.station::after{content:'';position:absolute;left:0;right:0;bottom:0;height:16px;background:linear-gradient(180deg,var(--wood),var(--wood-d));border-top:3px solid var(--copper-d)}
+.station-in{position:relative;z-index:2;padding-bottom:12px}
+.progress-row{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.progress-label{font-weight:800;color:var(--terra-d);font-size:15px;background:#fff;border:2px solid var(--copper);border-radius:999px;padding:3px 14px}
+.mini-dots{display:flex;gap:5px}
+.mini-dot{width:15px;height:15px;border-radius:50%;background:var(--paper-d);border:2px solid var(--copper);transition:.3s}
+.mini-dot.on{background:var(--herb);border-color:var(--herb-d);box-shadow:0 0 8px rgba(111,191,74,.6)}
+
+/* ===== بطاقات الطعام ===== */
+.food{position:relative;width:124px;flex:none;background:var(--paper);border:3px solid var(--copper);border-radius:16px;padding:7px 6px 5px;text-align:center;
+  box-shadow:0 5px 0 var(--copper-d),inset 0 2px 0 #fff;touch-action:none;transition:transform .16s,box-shadow .2s}
+.food:hover{transform:translateY(-4px)}
+.food svg{width:62px;height:62px;display:block;margin:0 auto}
+.food .fw{font-weight:800;font-size:20px;color:var(--cocoa);line-height:1.25}
+.food .fw .taa{color:var(--berry-d);text-shadow:0 0 7px rgba(224,68,126,.35)}
+.food .okmark{position:absolute;top:-10px;left:-8px;width:27px;height:27px;border-radius:50%;background:var(--herb);color:#fff;font-weight:800;font-size:15px;display:none;place-items:center;border:3px solid #fff;z-index:3;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.food.picked{opacity:.42;pointer-events:none;filter:grayscale(.5)}
+.food.picked .okmark,.food.locked .okmark{display:grid;animation:popIn .35s}
+.food.locked{border-color:var(--herb-d);box-shadow:0 4px 0 var(--herb-d);background:#F3FBEC}
+.food.nope{animation:shakeX .45s}
+.food.mini{width:52px;padding:3px;border-width:2px;box-shadow:0 3px 0 var(--copper-d);border-radius:11px}
+.food.mini svg{width:32px;height:32px}
+.food.mini .fw{display:none}
+.food.mini::after{display:none}
+.pantry{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;background:rgba(200,122,60,.09);border:3px dashed var(--copper);border-radius:18px;padding:16px 12px;margin-bottom:14px}
+.drag{cursor:grab}
+.drag:active{cursor:grabbing}
+.drag.ghost{opacity:.22}
+.drag.selected{outline:3px solid var(--mint);outline-offset:3px;animation:awaitPulse 1.2s infinite}
+.drag.shake{animation:shakeX .45s!important}
+.drag-clone{position:fixed!important;z-index:70;pointer-events:none;margin:0;animation:none!important;filter:drop-shadow(0 15px 16px rgba(120,80,40,.45));transform:rotate(var(--tilt,0deg)) scale(1.07)}
+@keyframes awaitPulse{50%{box-shadow:0 0 0 8px rgba(55,183,154,.2)}}
+.drop{transition:.2s}
+.drop.await{border-color:var(--mint)!important;animation:awaitPulse 1.4s infinite}
+.drop.hover-ok{border-color:var(--herb)!important;background:rgba(111,191,74,.2)!important;transform:scale(1.02);box-shadow:0 0 20px rgba(111,191,74,.45)}
+.drop.hover-mid{border-color:var(--gold)!important;background:rgba(255,194,74,.22)!important;transform:scale(1.02);box-shadow:0 0 20px rgba(255,194,74,.5)}
+.drop.filled{border-style:solid!important;border-color:var(--herb-d)!important;background:rgba(111,191,74,.13)!important}
+
+/* ===== السلة ===== */
+.basket-zone{display:flex;justify-content:center}
+.basket{position:relative;width:min(430px,94%);min-height:132px;border-radius:18px;border:3px dashed var(--copper);background:rgba(255,194,74,.12);display:flex;align-items:center;gap:12px;padding:12px 14px}
+.basket-art{width:104px;flex:none}
+.basket-art svg{width:100%;display:block;filter:drop-shadow(0 4px 5px rgba(140,90,40,.3))}
+.basket-items{flex:1;display:flex;gap:7px;flex-wrap:wrap;align-items:center;min-height:62px}
+.basket-empty{font-size:13.5px;font-weight:700;color:var(--dim)}
+.basket-lbl{position:absolute;top:-13px;right:18px;background:var(--terra);color:#fff;font-family:'Rakkas';font-size:15px;padding:1px 16px;border-radius:999px;border:2px solid var(--terra-d)}
+
+/* ===== المرحلة ٢: التقطيع ===== */
+.recipe-line{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;background:#fff;border:3px solid var(--copper);border-radius:18px;padding:14px;margin-bottom:14px;position:relative;box-shadow:0 5px 0 var(--copper-d)}
+.dish-pic{width:96px;height:96px;flex:none;background:var(--cream);border:2px solid var(--copper);border-radius:14px;display:grid;place-items:center}
+.dish-pic svg{width:80px;height:80px}
+.slots{display:flex;gap:9px;justify-content:center}
+.lslot{position:relative;width:70px;height:82px;border-radius:14px;border:3px dashed var(--copper);background:rgba(200,122,60,.08);display:grid;place-items:center}
+.lslot::after{content:attr(data-ghost);position:absolute;font-size:38px;font-weight:800;color:var(--mint);opacity:0;transition:.3s;pointer-events:none}
+.lslot.hinted::after{opacity:.45}
+.lslot.filled{border-color:transparent;background:transparent}
+.lslot.filled::after{display:none}
+.board{position:relative;background:linear-gradient(160deg,#D9A063,var(--wood) 55%,var(--wood-d));border:4px solid var(--copper-d);border-radius:20px;padding:18px 14px;box-shadow:inset 0 3px 10px rgba(0,0,0,.22),0 6px 0 rgba(0,0,0,.18)}
+.board::before{content:'';position:absolute;inset:8px;border-radius:14px;border:2px dashed rgba(255,255,255,.22);pointer-events:none}
+.board-lbl{text-align:center;font-family:'Rakkas';color:#FFF3DC;font-size:16px;margin-bottom:10px;text-shadow:0 2px 0 rgba(0,0,0,.25)}
+.tiles{display:flex;gap:11px;flex-wrap:wrap;justify-content:center;min-height:88px}
+.ltile{position:relative;width:66px;height:78px;display:grid;place-items:center;background:linear-gradient(#FFFDF7,var(--cream) 58%,var(--cream2));border:3px solid var(--copper);border-radius:13px;
+  font-weight:800;font-size:40px;color:var(--cocoa);box-shadow:0 5px 0 var(--copper-d),inset 0 2px 0 #fff;touch-action:none;transition:width .2s,height .2s,font-size .2s,transform .15s}
+.ltile:hover{transform:translateY(-3px)}
+.ltile.in-slot{width:60px;height:72px;font-size:36px;animation:popIn .3s;box-shadow:0 4px 0 var(--copper-d)}
+.ltile.locked{background:linear-gradient(#F3FBEC,#DCF3CB);border-color:var(--herb-d);box-shadow:0 4px 0 var(--herb-d);color:#2C5A18;cursor:default}
+.dish-reveal{position:absolute;inset:0;display:grid;place-items:center;background:rgba(255,251,242,.96);border-radius:14px;opacity:0;transform:scale(.6);transition:.55s cubic-bezier(.34,1.56,.64,1);pointer-events:none;z-index:4}
+.dish-reveal.show{opacity:1;transform:scale(1)}
+.dish-inner{text-align:center;position:relative}
+.plate{position:relative;width:190px;height:120px;margin:0 auto}
+.plate svg{width:100%;height:100%;display:block}
+.plate-foods{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:2px;padding-bottom:22px}
+.plate-foods svg{width:52px;height:52px}
+.dish-word{font-family:'Rakkas';font-size:38px;color:var(--terra-d);line-height:1.2;text-shadow:0 2px 0 #fff}
+.dish-steam{position:absolute;top:-6px;left:50%;width:14px;height:14px;border-radius:50%;background:rgba(127,212,232,.6);filter:blur(4px);animation:wisp 2.8s ease-in infinite}
+.round-pips{display:flex;gap:9px;justify-content:center;margin-bottom:10px}
+.rpip{position:relative;width:46px;height:46px;border-radius:12px;background:#fff;border:2px solid var(--paper-d);display:grid;place-items:center;opacity:.55;transition:.3s}
+.rpip svg{width:32px;height:32px}
+.rpip.cur{opacity:1;border-color:var(--terra);box-shadow:0 0 12px rgba(226,84,58,.28)}
+.rpip.done{opacity:1;border-color:var(--herb)}
+.rpip.done::after{content:'✓';position:absolute;top:-8px;left:-8px;width:20px;height:20px;border-radius:50%;background:var(--herb);color:#fff;font-size:13px;font-weight:800;display:grid;place-items:center}
+
+/* ===== المرحلة ٣: الوصفات ===== */
+.recipes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
+.recipe{position:relative;background:var(--paper);border:3px solid var(--copper);border-radius:18px;padding:10px;box-shadow:0 5px 0 var(--copper-d);transition:.3s}
+.recipe-head{text-align:center;background:linear-gradient(var(--terra),var(--terra-d));color:#fff;border-radius:12px;padding:5px 8px;margin-bottom:8px}
+.recipe-head b{display:block;font-family:'Rakkas';font-size:17px;line-height:1.25}
+.recipe-head span{display:block;font-size:25px;font-weight:800;color:var(--gold-l);line-height:1.1}
+.recipe-drop{position:relative;min-height:104px;border-radius:14px;border:3px dashed var(--copper);background:rgba(200,122,60,.07);display:flex;gap:7px;flex-wrap:wrap;align-items:center;justify-content:center;padding:8px}
+.recipe-hint{font-size:12.5px;font-weight:700;color:var(--dim);pointer-events:none}
+.recipe-drop .food{width:88px;padding:5px 4px 3px}
+.recipe-drop .food svg{width:44px;height:44px}
+.recipe-drop .food .fw{font-size:15px}
+.recipe-count{position:absolute;top:-11px;left:10px;background:#fff;border:2px solid var(--copper);border-radius:999px;font-size:12px;font-weight:800;color:var(--terra-d);padding:0 9px}
+.recipe.full{border-color:var(--herb-d);box-shadow:0 5px 0 var(--herb-d),0 0 18px rgba(111,191,74,.28)}
+.recipe.full .recipe-head{background:linear-gradient(var(--herb),var(--herb-d))}
+.recipe.hintg{border-color:var(--gold);box-shadow:0 0 0 4px rgba(255,194,74,.45),0 5px 0 var(--copper-d)}
+.recipe.nope{animation:shakeX .45s}
+.tray{display:flex;gap:11px;flex-wrap:wrap;justify-content:center;background:rgba(200,122,60,.09);border:3px dashed var(--copper);border-radius:18px;padding:16px 12px}
+.tray-cap{width:100%;text-align:center;font-size:13px;font-weight:800;color:var(--cocoa2);margin-bottom:2px}
+
+/* ===== المرحلة ٤: التقديم ===== */
+.serve-window{display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(var(--mint),var(--mint-d));border:3px solid var(--mint-d);border-radius:16px;padding:8px 14px;margin-bottom:12px;color:#fff;box-shadow:0 5px 0 rgba(0,0,0,.15)}
+.serve-window b{font-family:'Rakkas';font-size:18px}
+.serve-window .bell{width:30px;height:30px}
+.serve-window.ring{animation:bellRing .6s}
+@keyframes bellRing{25%{transform:rotate(-3deg)}75%{transform:rotate(3deg)}}
+.ticket{position:relative;background:var(--paper);border:3px solid var(--copper);border-radius:14px;padding:12px 14px;margin-bottom:14px;box-shadow:0 5px 0 var(--copper-d);
+  background-image:repeating-linear-gradient(0deg,transparent 0 26px,rgba(200,122,60,.12) 26px 27px)}
+.ticket::before,.ticket::after{content:'';position:absolute;top:-9px;width:20px;height:20px;border-radius:50%;background:var(--cream);border:3px solid var(--copper)}
+.ticket::before{right:22px}.ticket::after{left:22px}
+.ticket-title{text-align:center;font-family:'Rakkas';font-size:20px;color:var(--terra-d);margin-bottom:6px}
+.ticket-items{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.ticket-item{display:flex;align-items:center;gap:6px;background:#fff;border:2px solid var(--gold);border-radius:999px;padding:3px 12px 3px 6px}
+.ticket-item svg{width:36px;height:36px}
+.ticket-item b{font-size:19px;font-weight:800;color:var(--cocoa)}
+.ticket-item b .taa{color:var(--berry-d)}
+.plates{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.dish{position:relative;background:var(--paper);border:3px solid var(--copper);border-radius:18px;padding:10px 8px;box-shadow:0 5px 0 var(--copper-d);cursor:pointer;transition:transform .2s,box-shadow .2s;animation:riseIn .5s both}
+.dish:hover{transform:translateY(-5px)}
+.dish-plate{position:relative;height:96px;display:grid;place-items:center}
+.dish-plate>svg{position:absolute;inset:0;width:100%;height:100%}
+.dish-foods{position:relative;display:flex;gap:2px;justify-content:center;padding-bottom:16px}
+.dish-foods svg{width:46px;height:46px}
+.dish-list{display:flex;gap:5px;flex-wrap:wrap;justify-content:center}
+.dish-list span{font-size:15px;font-weight:800;background:#fff;border:2px solid var(--paper-d);border-radius:999px;padding:0 9px;color:var(--cocoa)}
+.dish-list span .taa{color:var(--berry-d)}
+.dish-num{position:absolute;top:6px;right:8px;background:var(--terra);color:#fff;font-weight:800;font-size:12px;border-radius:999px;padding:0 9px}
+.dish.right{border-color:var(--herb-d);box-shadow:0 0 20px rgba(111,191,74,.6),0 5px 0 var(--herb-d);background:#F3FBEC}
+.dish.right::after{content:'✓';position:absolute;top:-12px;left:-10px;width:32px;height:32px;border-radius:50%;background:var(--herb);color:#fff;font-size:19px;font-weight:800;display:grid;place-items:center;border:3px solid #fff;animation:popIn .4s}
+.dish.wrong{animation:shakeX .45s;border-color:var(--terra)}
+.dish.cool{pointer-events:none}
+.dish.served{opacity:.35;pointer-events:none}
+
+/* ===== إتمام وأزرار ===== */
+.done-card{width:100%;max-width:680px;background:var(--paper);color:var(--cocoa);border:3px solid var(--herb);border-radius:18px;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;box-shadow:0 6px 0 var(--herb-d);animation:riseIn .5s both;scroll-margin:90px 0 150px}
+.done-card p{font-weight:800;font-size:19px}
+.btn-primary{position:relative;overflow:hidden;font-family:'Rakkas';font-size:22px;background:linear-gradient(var(--gold),#F0A81E);color:#5A3400;border:3px solid var(--copper-d);border-radius:999px;padding:9px 30px;box-shadow:0 6px 0 var(--copper-d),0 10px 22px rgba(255,194,74,.35);cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-primary:active{transform:translateY(2px);box-shadow:0 3px 0 var(--copper-d)}
+.btn-primary::after{content:'';position:absolute;top:0;bottom:0;width:40%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.65),transparent);left:-60%;animation:shineSweep 3.2s infinite}
+@keyframes shineSweep{0%,55%{left:-60%}100%{left:130%}}
+.btn-primary.big{font-size:27px;padding:13px 44px}
+.btn-plain{font-weight:800;font-size:17px;background:var(--cream2);color:var(--cocoa);border:3px solid var(--copper);border-radius:999px;padding:9px 26px;cursor:pointer;box-shadow:0 4px 0 var(--copper-d)}
+.btn-hint{flex:none;background:#FFF0F6;border:2px solid var(--berry);color:var(--berry-d);border-radius:999px;padding:8px 18px;font-weight:800;font-size:15px;cursor:pointer;transition:.2s;margin-bottom:18px}
+.btn-hint:hover{background:#FFE0EC;transform:translateY(-2px)}
+
+/* ===== الشيف تميم ===== */
+footer{position:sticky;bottom:0;z-index:25;background:linear-gradient(180deg,rgba(255,243,220,.65),rgba(255,251,242,.98));backdrop-filter:blur(6px);border-top:4px solid var(--copper)}
+.guide-in{max-width:1120px;margin:0 auto;display:flex;align-items:flex-end;gap:14px;padding:6px 16px 10px}
+.chef{width:108px;flex:none}
+.csvg{width:100%;display:block;overflow:visible}
+.chef .c-all{animation:bob 3.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.chef .spoon{transform-box:view-box;transform-origin:118px 100px;animation:spoonTap 3s ease-in-out infinite}
+@keyframes spoonTap{0%,100%{transform:rotate(0)}50%{transform:rotate(-14deg)}}
+.chef .toque{transform-box:fill-box;transform-origin:bottom center;animation:toqueBob 3.4s ease-in-out infinite}
+@keyframes toqueBob{50%{transform:scaleY(1.04) translateY(-1px)}}
+.c-eyes-happy,.c-mouth-sad{display:none}
+.chef[data-mood=happy] .c-eyes-idle,.chef[data-mood=cheer] .c-eyes-idle{display:none}
+.chef[data-mood=happy] .c-eyes-happy,.chef[data-mood=cheer] .c-eyes-happy{display:block}
+.chef[data-mood=happy] .c-mouth-idle,.chef[data-mood=cheer] .c-mouth-idle,.chef[data-mood=sad] .c-mouth-idle{display:none}
+.chef[data-mood=sad] .c-mouth-sad{display:block}
+.chef .c-head{transform-box:fill-box;transform-origin:center;transition:transform .3s}
+.chef[data-mood=sad] .c-head{transform:rotate(-6deg) translateY(2px)}
+.chef[data-mood=cheer] .c-all{animation:cheerJump 1s ease-in-out infinite}
+.chef[data-mood=cheer] .spoon{animation:spoonCheer .7s ease-in-out infinite}
+@keyframes spoonCheer{50%{transform:rotate(-56deg) translateY(-6px)}}
+@keyframes cheerJump{0%,100%{transform:translateY(0)}30%{transform:translateY(-14px) rotate(-4deg)}60%{transform:translateY(-3px)}80%{transform:translateY(-8px) rotate(4deg)}}
+.chef.talk .c-mouth-idle{animation:talk .14s 8 alternate;transform-box:fill-box;transform-origin:center}
+@keyframes talk{to{transform:scaleY(.35)}}
+.bubble{flex:1;min-width:0;background:var(--paper);color:var(--cocoa);border:3px solid var(--copper);border-radius:16px;padding:11px 16px;font-weight:600;font-size:17px;line-height:1.55;position:relative;box-shadow:0 5px 0 var(--copper-d);margin-bottom:14px}
+.bubble::after{content:'';position:absolute;right:-19px;bottom:20px;border:10px solid transparent;border-left-color:var(--copper)}
+.bubble.pop{animation:popIn .35s}
+.bubble .taa{color:var(--berry-d);font-weight:800;font-size:1.15em}
+
+/* ===== الطبقات ===== */
+#fxcv{position:fixed;inset:0;z-index:60;pointer-events:none}
+#fxLayer{position:fixed;inset:0;z-index:55;pointer-events:none}
+#dragLayer{position:fixed;inset:0;z-index:70;pointer-events:none}
+.overlay{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;padding:22px 16px;background:rgba(58,36,24,.72);backdrop-filter:blur(7px);opacity:0;pointer-events:none;transition:opacity .3s;overflow-y:auto;overscroll-behavior:contain}
+.overlay>*{margin:auto 0;flex:none}
+.overlay.show{opacity:1;pointer-events:auto}
+.overlay.trans{background:linear-gradient(180deg,#FFE7BE,#FFF3DC 46%,#F0CFA0)}
+.intro-card{max-width:700px;width:100%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:15px;animation:riseIn .55s both;padding:10px 0 20px}
+.intro-hero{width:min(230px,62vw)}
+.intro-hero svg{width:100%;display:block}
+.intro-title{font-family:'Rakkas';font-size:clamp(38px,8vw,62px);background:linear-gradient(90deg,var(--terra),var(--berry),var(--mint));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 3px 0 rgba(255,255,255,.8));line-height:1.2}
+.intro-sub{font-family:'Rakkas';color:var(--mint-d);font-size:clamp(16px,3.4vw,22px);border:2px solid var(--mint);padding:2px 18px;border-radius:999px;background:#EAF9F5}
+.story{display:flex;align-items:center;gap:14px;background:var(--paper);color:var(--cocoa);border:3px solid var(--copper);border-radius:18px;padding:14px 18px;box-shadow:0 6px 0 var(--copper-d);text-align:right}
+.story .chef{width:98px}
+.story p{font-weight:600;font-size:16.5px;line-height:1.8}
+.story b{color:var(--berry-d)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.chip{background:#fff;border:2px solid var(--mint);color:var(--mint-d);border-radius:999px;padding:5px 14px;font-weight:700;font-size:14px}
+.chip b{color:var(--terra)}
+.skill-chip{background:#FFF3D0;border-color:var(--gold);color:#A56A00}
+.tiny-note{color:#FFF3DC;font-size:13px;font-weight:600}
+.overlay.trans .tiny-note,.overlay.trans .trans-sub{color:var(--cocoa2)}
+.trans-card{text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;animation:popIn .5s both}
+.trans-chef{width:min(180px,50vw)}
+.trans-chef svg{width:100%;display:block}
+.trans-num{font-family:'Rakkas';font-size:24px;color:var(--mint-d)}
+.trans-title{font-family:'Rakkas';font-size:clamp(36px,7.4vw,56px);color:var(--terra-d);text-shadow:0 3px 0 #fff}
+.trans-sub{font-weight:600;font-size:17px;max-width:460px}
+.finale-card{max-width:580px;width:100%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;padding:10px 0 24px;animation:riseIn .5s both}
+.finale-card .chef{width:100px}
+.medal-svg{width:min(266px,64vw);display:block;animation:medalDrop .9s cubic-bezier(.34,1.56,.64,1) both;filter:drop-shadow(0 0 28px rgba(255,194,74,.7))}
+@keyframes medalDrop{0%{transform:translateY(-80px) scale(.5);opacity:0}60%{transform:translateY(8px) scale(1.06)}100%{transform:translateY(0) scale(1);opacity:1}}
+.medal-shine{transform-origin:120px 112px;animation:spin 6s linear infinite}
+.name-banner{background:linear-gradient(var(--terra),var(--terra-d));color:#fff;font-family:'Rakkas';font-size:24px;padding:5px 30px;border-radius:999px;border:3px solid #7A2416;box-shadow:0 4px 0 #5A1A0E;margin-top:-14px;position:relative;z-index:1;min-width:210px}
+.finale-title{font-family:'Rakkas';font-size:clamp(28px,6.2vw,42px);color:var(--gold-l);text-shadow:0 3px 0 rgba(0,0,0,.35)}
+.finale-rank{color:var(--mint-l);font-weight:700;font-size:18px}
+.finale-stars{color:var(--gold);font-weight:800;font-size:22px}
+.name-input{background:rgba(255,255,255,.12);border:2px dashed var(--gold);color:#FFF3DC;border-radius:12px;padding:9px 14px;font-family:inherit;font-weight:700;font-size:18px;text-align:center;width:min(290px,86%)}
+.name-input::placeholder{color:#E4C9A6}
+.confirm-card{max-width:400px;width:100%;background:var(--paper);color:var(--cocoa);border:3px solid var(--copper);border-radius:18px;padding:26px;text-align:center;box-shadow:0 8px 0 var(--copper-d);animation:popIn .35s both}
+.confirm-card h3{font-family:'Rakkas';font-size:26px;margin-bottom:6px;color:var(--terra-d)}
+.confirm-card p{font-weight:600;color:var(--cocoa2);margin-bottom:18px}
+.confirm-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+@media (max-width:860px){
+  .recipes{grid-template-columns:1fr}
+  .recipe-drop{justify-content:flex-start}
+  .plates{grid-template-columns:1fr}
+  .dish{display:flex;align-items:center;gap:12px}
+  .dish-plate{width:150px;flex:none}
+  .dish-list{flex:1}
+}
+@media (max-width:760px){
+  .wall{height:104px}
+  .window{width:92px;height:74px;top:10px;left:10px}
+  .potrail{width:140px;height:86px;right:8px}
+  .shelf{width:132px;height:60px;top:20px}
+  .food{width:106px}
+  .food svg{width:52px;height:52px}
+  .food .fw{font-size:17px}
+  .ltile{width:54px;height:66px;font-size:32px}
+  .ltile.in-slot{width:48px;height:60px;font-size:29px}
+  .lslot{width:58px;height:70px}
+  .lslot::after{font-size:30px}
+  .slots{gap:6px}
+  .dish-pic{width:76px;height:76px}
+  .dish-pic svg{width:62px;height:62px}
+  .recipe-drop .food{width:80px}
+  .recipe-drop .food svg{width:38px;height:38px}
+  .recipe-drop .food .fw{font-size:13.5px}
+  .basket-art{width:80px}
+  .chef{width:84px}
+  .bubble{font-size:14.5px;padding:9px 12px}
+  .btn-hint{padding:7px 13px;font-size:13.5px;margin-bottom:14px}
+  .logo b{font-size:19px}
+  .logo small{display:none}
+  .pip .lbl{display:none}
+  .pip{padding:4px 7px}
+  .hbtn .lbl{display:none}
+  .hbtn{padding:6px 9px}
+  .story{flex-direction:column;text-align:center}
+  .station{padding:12px 10px 18px}
+  .plate{width:160px;height:104px}
+  .plate-foods svg{width:44px;height:44px}
+  .dish-word{font-size:32px}
+}
+@media (max-width:560px){
+  .pips{order:3;flex-basis:100%;padding-bottom:2px}
+  .hud-in{gap:7px;padding:8px 12px}
+  .food{width:calc(33.33% - 8px);min-width:92px}
+  .pantry{gap:8px;padding:12px 8px}
+  .tray{gap:8px;padding:12px 8px}
+  .ticket-item b{font-size:16px}
+  .ticket-item svg{width:30px;height:30px}
+  .dish{flex-direction:column}
+  .dish-plate{width:100%}
+}
+@media (max-height:640px){.chef{width:72px}.wall{height:88px}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<noscript><p style="padding:30px;text-align:center;font-size:20px">هذه اللعبة تحتاج إلى تفعيل جافاسكربت لتعمل 👨‍🍳</p></noscript>
+
+<div class="bg-stack" aria-hidden="true">
+  <div class="wall-tile"></div>
+  <div class="warmblob wb1"></div><div class="warmblob wb2"></div>
+  <div class="sunbeam"></div>
+  <canvas id="bgcv"></canvas>
+  <div class="floor"></div>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<div id="app">
+  <header>
+    <div class="hud-in">
+      <div class="logo"><span id="logoHat"></span><span><b>مطبخ التاء</b><small>مع الشيف تميم</small></span></div>
+      <div class="pips" id="pips" aria-label="مراحل الطبخ"></div>
+      <div class="hud-ctrl">
+        <div class="stars" id="starsBox" aria-label="النجوم"><span id="starIco"></span><span id="starCount">٠</span></div>
+        <button class="hbtn" id="soundBtn" aria-pressed="true" aria-label="كتم الصوت"></button>
+        <button class="hbtn" id="restartBtn" aria-label="ابدأ من جديد"></button>
+      </div>
+    </div>
+  </header>
+
+  <main><div id="stage"></div></main>
+
+  <footer>
+    <div class="guide-in">
+      <div class="chef" id="chef" data-mood="idle" aria-hidden="true"></div>
+      <div class="bubble" id="bubble" aria-live="polite">أهلاً! أنا الشيف تميم 👨‍🍳</div>
+      <button class="btn-hint" id="hintBtn">💡 تلميح</button>
+    </div>
+  </footer>
+</div>
+
+<canvas id="fxcv" aria-hidden="true"></canvas>
+<div id="fxLayer" aria-hidden="true"></div>
+<div class="overlay" id="overlay" role="dialog" aria-modal="true"></div>
+<div id="dragLayer" aria-hidden="true"></div>
+
+<script>
+(function(){
+'use strict';
+/* ================= أدوات ================= */
+const $=(s,r)=>(r||document).querySelector(s);
+const $$=(s,r)=>Array.from((r||document).querySelectorAll(s));
+const rnd=(a,b)=>a+Math.random()*(b-a);
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const shuffle=a=>{const c=a.slice();for(let i=c.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[c[i],c[j]]=[c[j],c[i]];}return c;};
+const AR='٠١٢٣٤٥٦٧٨٩';
+const arNum=n=>String(n).split('').map(d=>AR[+d]!==undefined?AR[+d]:d).join('');
+const center=el=>{const r=el.getBoundingClientRect();return{x:r.left+r.width/2,y:r.top+r.height/2};};
+const RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+let TOKEN=0;
+const later=(ms,fn)=>{const t=TOKEN;return setTimeout(()=>{if(t===TOKEN)fn();},ms);};
+const PAL=['#FFC24A','#E2543A','#37B79A','#E0447E','#6FBF4A','#7FD4E8','#C87A3C','#FFE3A0'];
+const PRAISE=['أحسنت يا شيف! 🌟','مكوّن ممتاز! 🧺','يدك خفيفة! 🥄','يا لك من طباخ ماهر!','لذيذ! الوصفة تتقدم 😋'];
+const hasTaa=w=>w.includes('ت');
+const POS_NAME=['أول الكلمة','وسط الكلمة','آخر الكلمة'];
+const POS_FORM=['تـ','ـتـ','ـت'];
+
+const S={screen:'intro',stage:0,stars:0,mistakes:0,sound:true,busy:false,
+  done:[false,false,false,false],hintHandler:null,placeHandler:null,hoverValid:null,tapAction:null};
+try{const p=localStorage.getItem('kitchen-taa-sound');if(p!==null)S.sound=p==='1';}catch(e){}
+
+/* ================= رسوم ================= */
+const starSVG=()=>`<svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 L61 38 L95 38 L67 58 L78 92 L50 71 L22 92 L33 58 L5 38 L39 38 Z" fill="#FFC24A" stroke="#C87A3C" stroke-width="4" stroke-linejoin="round"/></svg>`;
+const sndOnSVG=()=>`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9 H8 L13 4 V20 L8 15 H4 Z" fill="currentColor"/><path d="M16 8 Q19 12 16 16 M18.5 5.5 Q23 12 18.5 18.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>`;
+const sndOffSVG=()=>`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9 H8 L13 4 V20 L8 15 H4 Z" fill="currentColor"/><path d="M16 9 L22 15 M22 9 L16 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>`;
+const restartSVG=()=>`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5 A7 7 0 1 1 5.4 9.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M13 1.5 L13 8.5 L7 5 Z" fill="currentColor"/></svg>`;
+const hatSVG=()=>`<svg viewBox="0 0 100 100" aria-hidden="true"><path d="M26 54 Q10 50 12 34 Q14 20 30 24 Q34 8 50 10 Q66 8 70 24 Q86 20 88 34 Q90 50 74 54 Z" fill="#FFFDF7" stroke="#C87A3C" stroke-width="4"/><rect x="26" y="54" width="48" height="18" rx="7" fill="#FFF3DC" stroke="#C87A3C" stroke-width="4"/><path d="M36 60 h28" stroke="#E2543A" stroke-width="4" stroke-linecap="round"/><text x="50" y="90" text-anchor="middle" font-size="26" font-weight="800" fill="#E2543A" style="font-family:'Baloo Bhaijaan 2',sans-serif">ت</text></svg>`;
+const bellSVG=()=>`<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 28 Q8 14 20 12 Q32 14 32 28 Z" fill="#FFC24A" stroke="#8A4E22" stroke-width="2.5"/><rect x="5" y="28" width="30" height="5" rx="2.5" fill="#FFE3A0" stroke="#8A4E22" stroke-width="2.5"/><circle cx="20" cy="9" r="3.4" fill="#E2543A" stroke="#8A4E22" stroke-width="2"/></svg>`;
+function chefSVG(){return `<svg viewBox="0 0 150 178" class="csvg" aria-hidden="true">
+<ellipse cx="74" cy="172" rx="33" ry="6" fill="#8A4E22" opacity=".28"/>
+<g class="c-all">
+ <rect x="56" y="144" width="14" height="20" rx="6" fill="#5C4030"/><rect x="82" y="144" width="14" height="20" rx="6" fill="#5C4030"/>
+ <path d="M44 100 Q74 90 104 100 L110 150 Q74 160 38 150 Z" fill="#FFFDF7" stroke="#C87A3C" stroke-width="3"/>
+ <path d="M52 122 Q74 116 96 122 L98 150 Q74 157 50 150 Z" fill="#E2543A" opacity=".85"/>
+ <path d="M62 100 L74 114 L86 100" fill="#FFF3DC" stroke="#C87A3C" stroke-width="2.5"/>
+ <path d="M60 98 Q74 108 88 98 Q80 92 74 96 Q68 92 60 98 Z" fill="#E2543A" stroke="#B03A26" stroke-width="2"/>
+ <circle cx="60" cy="118" r="3" fill="#C87A3C"/><circle cx="60" cy="132" r="3" fill="#C87A3C"/>
+ <circle cx="88" cy="118" r="3" fill="#C87A3C"/><circle cx="88" cy="132" r="3" fill="#C87A3C"/>
+ <path d="M44 104 Q28 112 26 130" fill="none" stroke="#FFFDF7" stroke-width="11" stroke-linecap="round"/>
+ <path d="M44 104 Q28 112 26 130" fill="none" stroke="#C87A3C" stroke-width="2.4" stroke-linecap="round" opacity=".5"/>
+ <circle cx="26" cy="132" r="7" fill="#F2C9A0" stroke="#C98A5A" stroke-width="2"/>
+ <g class="spoon">
+  <path d="M104 104 Q118 100 122 90" fill="none" stroke="#FFFDF7" stroke-width="11" stroke-linecap="round"/>
+  <circle cx="122" cy="88" r="7" fill="#F2C9A0" stroke="#C98A5A" stroke-width="2"/>
+  <path d="M126 84 L136 62" stroke="#B5793F" stroke-width="6" stroke-linecap="round"/>
+  <ellipse cx="139" cy="55" rx="9" ry="12" fill="#D9A063" stroke="#8A5628" stroke-width="2.5" transform="rotate(18 139 55)"/>
+ </g>
+ <g class="c-head">
+  <circle cx="74" cy="68" r="26" fill="#F2C9A0" stroke="#C98A5A" stroke-width="2.5"/>
+  <circle cx="50" cy="70" r="5" fill="#F2C9A0" stroke="#C98A5A" stroke-width="2"/><circle cx="98" cy="70" r="5" fill="#F2C9A0" stroke="#C98A5A" stroke-width="2"/>
+  <g class="c-eyes-idle"><circle cx="64" cy="68" r="4.6" fill="#3A2418"/><circle cx="84" cy="68" r="4.6" fill="#3A2418"/><circle cx="65.4" cy="66.6" r="1.6" fill="#fff"/><circle cx="85.4" cy="66.6" r="1.6" fill="#fff"/></g>
+  <g class="c-eyes-happy"><path d="M59 69 Q64 63 69 69" fill="none" stroke="#3A2418" stroke-width="3" stroke-linecap="round"/><path d="M79 69 Q84 63 89 69" fill="none" stroke="#3A2418" stroke-width="3" stroke-linecap="round"/></g>
+  <path class="c-mouth-idle" d="M66 80 Q74 87 82 80" fill="none" stroke="#A05A3A" stroke-width="2.6" stroke-linecap="round"/>
+  <circle class="c-mouth-sad" cx="74" cy="82" r="3.4" fill="none" stroke="#A05A3A" stroke-width="2.4"/>
+  <circle cx="57" cy="76" r="3.6" fill="#FF9A8A" opacity=".55"/><circle cx="91" cy="76" r="3.6" fill="#FF9A8A" opacity=".55"/>
+  <g class="toque">
+   <path d="M50 46 Q34 44 36 30 Q38 17 52 21 Q56 6 74 8 Q92 6 96 21 Q110 17 112 30 Q114 44 98 46 Z" fill="#FFFDF7" stroke="#C87A3C" stroke-width="3"/>
+   <rect x="50" y="44" width="48" height="14" rx="6" fill="#FFF3DC" stroke="#C87A3C" stroke-width="3"/>
+   <path d="M60 50 h28" stroke="#E2543A" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+  </g>
+ </g>
+</g></svg>`;}
+function windowSVG(){return `<svg viewBox="0 0 118 92" aria-hidden="true">
+<rect x="4" y="4" width="110" height="84" rx="10" fill="#B5793F" stroke="#8A5628" stroke-width="4"/>
+<rect x="12" y="12" width="94" height="68" rx="6" fill="#BFE9F7"/>
+<path d="M12 62 Q40 44 66 60 Q90 74 106 62 V80 H12 Z" fill="#8FE0CD" opacity=".8"/>
+<circle cx="86" cy="30" r="12" fill="#FFC24A"/><g stroke="#FFC24A" stroke-width="3" stroke-linecap="round"><path d="M86 10 v6 M86 44 v6 M66 30 h6 M100 30 h6"/></g>
+<path d="M59 12 V80 M12 46 H106" stroke="#B5793F" stroke-width="5"/>
+<path d="M12 12 Q30 26 12 40 Z" fill="#E2543A" opacity=".8"/><path d="M106 12 Q88 26 106 40 Z" fill="#E2543A" opacity=".8"/>
+</svg>`;}
+function potrailSVG(){return `<svg viewBox="0 0 186 104" aria-hidden="true">
+<path d="M6 14 H180" stroke="#8A4E22" stroke-width="6" stroke-linecap="round"/>
+<g class="hangpot p1" style="transform-origin:40px 14px"><path d="M40 14 V26" stroke="#8A4E22" stroke-width="3"/><path d="M20 26 h40 l-5 30 q-15 8 -30 0 Z" fill="#C87A3C" stroke="#8A4E22" stroke-width="3"/><path d="M18 26 h44" stroke="#FFC24A" stroke-width="4" stroke-linecap="round"/><path d="M60 32 q12 6 0 14" fill="none" stroke="#8A4E22" stroke-width="3"/></g>
+<g class="hangpot p2" style="transform-origin:96px 14px"><path d="M96 14 V22" stroke="#8A4E22" stroke-width="3"/><ellipse cx="96" cy="42" rx="26" ry="20" fill="#E2543A" stroke="#B03A26" stroke-width="3"/><path d="M70 34 h52" stroke="#FF8A6E" stroke-width="4" stroke-linecap="round"/><path d="M122 38 q12 6 0 12" fill="none" stroke="#B03A26" stroke-width="3"/></g>
+<g class="hangpot p3" style="transform-origin:150px 14px"><path d="M150 14 V30" stroke="#8A4E22" stroke-width="3"/><path d="M132 30 h36 l-4 22 q-14 6 -28 0 Z" fill="#37B79A" stroke="#1F8871" stroke-width="3"/><path d="M130 30 h40" stroke="#8FE0CD" stroke-width="4" stroke-linecap="round"/></g>
+</svg>`;}
+function shelfSVG(){return `<svg viewBox="0 0 180 76" aria-hidden="true">
+<rect x="6" y="54" width="168" height="10" rx="4" fill="#B5793F" stroke="#8A5628" stroke-width="3"/>
+<g><rect x="22" y="20" width="30" height="34" rx="6" fill="#FFFDF7" stroke="#C87A3C" stroke-width="3"/><rect x="24" y="14" width="26" height="8" rx="3" fill="#E2543A" stroke="#B03A26" stroke-width="2"/><rect x="27" y="34" width="20" height="14" rx="3" fill="#F7E4C3"/><text x="37" y="45" text-anchor="middle" font-size="9" font-weight="800" fill="#8A4E22" style="font-family:'Baloo Bhaijaan 2',sans-serif">دقيق</text></g>
+<g><rect x="72" y="24" width="30" height="30" rx="6" fill="#FFFDF7" stroke="#C87A3C" stroke-width="3"/><rect x="74" y="18" width="26" height="8" rx="3" fill="#37B79A" stroke="#1F8871" stroke-width="2"/><rect x="77" y="36" width="20" height="12" rx="3" fill="#FFE3A0"/><text x="87" y="46" text-anchor="middle" font-size="9" font-weight="800" fill="#8A4E22" style="font-family:'Baloo Bhaijaan 2',sans-serif">سكر</text></g>
+<g><rect x="122" y="26" width="28" height="28" rx="6" fill="#FFFDF7" stroke="#C87A3C" stroke-width="3"/><rect x="124" y="20" width="24" height="8" rx="3" fill="#E0447E" stroke="#A82C5C" stroke-width="2"/><circle cx="136" cy="42" r="7" fill="#FF8A6E"/><text x="136" y="45" text-anchor="middle" font-size="8" font-weight="800" fill="#7A2416" style="font-family:'Baloo Bhaijaan 2',sans-serif">ملح</text></g>
+</svg>`;}
+const basketSVG=()=>`<svg viewBox="0 0 120 96" aria-hidden="true">
+<path d="M14 34 H106 L98 84 Q60 94 22 84 Z" fill="#D9A063" stroke="#8A5628" stroke-width="4"/>
+<path d="M22 46 H98 M26 60 H94 M30 74 H90" stroke="#8A5628" stroke-width="3" opacity=".55"/>
+<path d="M34 34 L40 84 M60 34 V88 M86 34 L80 84" stroke="#8A5628" stroke-width="3" opacity=".45"/>
+<path d="M10 30 H110" stroke="#B5793F" stroke-width="9" stroke-linecap="round"/>
+<path d="M32 30 Q60 -2 88 30" fill="none" stroke="#8A5628" stroke-width="6" stroke-linecap="round"/>
+</svg>`;
+const plateSVG=()=>`<svg viewBox="0 0 200 120" aria-hidden="true">
+<ellipse cx="100" cy="96" rx="82" ry="12" fill="#8A4E22" opacity=".2"/>
+<ellipse cx="100" cy="78" rx="88" ry="30" fill="#FFFDF7" stroke="#C87A3C" stroke-width="4"/>
+<ellipse cx="100" cy="74" rx="66" ry="21" fill="#FFF3DC" stroke="#EFDCBB" stroke-width="3"/>
+<path d="M28 72 Q100 52 172 72" fill="none" stroke="#fff" stroke-width="4" opacity=".8"/>
+</svg>`;
+function medalSVG(){
+ let st='';for(let i=0;i<16;i++){const a=-Math.PI/2+i*Math.PI/8,r=i%2?76:100;st+=(i?'L':'M')+(120+Math.cos(a)*r).toFixed(1)+' '+(112+Math.sin(a)*r).toFixed(1)+' ';}
+ return `<svg viewBox="0 0 240 278" class="medal-svg" aria-hidden="true">
+<path d="M84 162 L64 254 L100 230 L118 264 L130 168 Z" fill="#E2543A" stroke="#B03A26" stroke-width="3" stroke-linejoin="round"/>
+<path d="M156 162 L176 254 L140 230 L122 264 L110 168 Z" fill="#37B79A" stroke="#1F8871" stroke-width="3" stroke-linejoin="round"/>
+<path d="${st}Z" fill="#F0A81E" stroke="#8A4E22" stroke-width="3"/>
+<circle cx="120" cy="112" r="74" fill="#FFC24A" stroke="#C87A3C" stroke-width="3"/>
+<circle cx="120" cy="112" r="62" fill="#FFFBF2" stroke="#E09A12" stroke-width="3"/>
+<g transform="translate(74,44) scale(.92)"><path d="M26 54 Q10 50 12 34 Q14 20 30 24 Q34 8 50 10 Q66 8 70 24 Q86 20 88 34 Q90 50 74 54 Z" fill="#FFFDF7" stroke="#C87A3C" stroke-width="4"/><rect x="26" y="54" width="48" height="16" rx="7" fill="#FFF3DC" stroke="#C87A3C" stroke-width="4"/></g>
+<text x="120" y="138" text-anchor="middle" font-size="42" font-weight="800" fill="#E2543A" style="font-family:'Baloo Bhaijaan 2',sans-serif">ت</text>
+<text x="120" y="162" text-anchor="middle" font-size="15" fill="#1F8871" style="font-family:'Rakkas',sans-serif">الشيف المتميز</text>
+<g class="medal-shine"><path d="M120 38 A74 74 0 0 1 184 76" stroke="#fff" stroke-width="9" fill="none" opacity=".45" stroke-linecap="round"/></g>
+<circle cx="120" cy="26" r="6" fill="#FFFBF2"/><circle cx="202" cy="112" r="5" fill="#E0447E"/><circle cx="38" cy="112" r="5" fill="#37B79A"/>
+</svg>`;}
+const face=(x,y,s,c)=>`<g transform="translate(${x} ${y}) scale(${s||1})"><circle cx="-7" cy="0" r="2.6" fill="${c||'#3A2418'}"/><circle cx="7" cy="0" r="2.6" fill="${c||'#3A2418'}"/><path d="M-4 5 Q0 9 4 5" stroke="${c||'#3A2418'}" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="-12" cy="4" r="2.8" fill="#FF8FB0" opacity=".55"/><circle cx="12" cy="4" r="2.8" fill="#FF8FB0" opacity=".55"/></g>`;
+const PW=i=>`<svg viewBox="0 0 100 100" aria-hidden="true">${i}</svg>`;
+const PICS={
+apple:()=>PW(`<path d="M50 26 C36 14 16 22 16 44 C16 66 32 84 50 84 C68 84 84 66 84 44 C84 22 64 14 50 26 Z" fill="#E2543A" stroke="#8A2416" stroke-width="2.5"/><path d="M50 26 Q49 14 56 10" stroke="#8A5628" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M56 16 Q72 6 78 18 Q66 26 56 16 Z" fill="#6FBF4A" stroke="#4A8F2E" stroke-width="2"/><ellipse cx="31" cy="38" rx="6" ry="10" fill="#fff" opacity=".38" transform="rotate(-20 31 38)"/>${face(50,52,1.1,'#5A1008')}`),
+dates:()=>PW(`<path d="M18 78 Q50 66 82 78 Q50 90 18 78 Z" fill="#6FBF4A" stroke="#4A8F2E" stroke-width="2.5"/><ellipse cx="36" cy="56" rx="11" ry="17" fill="#8A4A1F" stroke="#5A2C0C" stroke-width="2.5" transform="rotate(-18 36 56)"/><ellipse cx="66" cy="58" rx="10" ry="16" fill="#8A4A1F" stroke="#5A2C0C" stroke-width="2.5" transform="rotate(22 66 58)"/><ellipse cx="52" cy="50" rx="11" ry="18" fill="#A5622A" stroke="#5A2C0C" stroke-width="2.5" transform="rotate(6 52 50)"/><ellipse cx="47" cy="40" rx="3.5" ry="6" fill="#D08A50" opacity=".85"/>${face(52,54,.9,'#3A1C06')}`),
+berries:()=>PW(`<path d="M50 24 Q64 10 72 20 Q62 30 50 24 Z" fill="#6FBF4A" stroke="#4A8F2E" stroke-width="2"/><circle cx="38" cy="50" r="15" fill="#E0447E" stroke="#A82C5C" stroke-width="2.5"/><circle cx="62" cy="48" r="14" fill="#E0447E" stroke="#A82C5C" stroke-width="2.5"/><circle cx="50" cy="68" r="15" fill="#F0629A" stroke="#A82C5C" stroke-width="2.5"/><circle cx="33" cy="44" r="3.5" fill="#fff" opacity=".55"/><circle cx="57" cy="42" r="3" fill="#fff" opacity=".55"/>${face(50,68,.9,'#5A0C2C')}`),
+fig:()=>PW(`<path d="M50 24 Q50 14 56 10" stroke="#4A8F2E" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M56 14 Q70 8 74 18 Q62 26 56 14 Z" fill="#6FBF4A" stroke="#4A8F2E" stroke-width="2"/><path d="M46 24 C60 30 64 48 56 62 C50 72 42 72 36 62 C28 48 32 30 46 24 Z" fill="#8E5BB8" stroke="#5A3A7A" stroke-width="2.5"/><path d="M40 32 Q36 46 40 58" stroke="#C9A6E0" stroke-width="3" fill="none" opacity=".7"/><path d="M72 46 C82 50 84 62 78 70 C72 78 64 78 60 70 C54 60 62 48 72 46 Z" fill="#C9739A" stroke="#8A3A5A" stroke-width="2.5"/><circle cx="70" cy="62" r="6" fill="#FFD9E4" opacity=".8"/>${face(46,50,.8,'#3A1050')}`),
+olive:()=>PW(`<path d="M18 72 Q50 52 86 28" fill="none" stroke="#8A5628" stroke-width="4" stroke-linecap="round"/><ellipse cx="34" cy="52" rx="12" ry="5" fill="#6FBF4A" stroke="#4A8F2E" stroke-width="2" transform="rotate(-30 34 52)"/><ellipse cx="58" cy="38" rx="12" ry="5" fill="#6FBF4A" stroke="#4A8F2E" stroke-width="2" transform="rotate(-30 58 38)"/><ellipse cx="74" cy="50" rx="11" ry="5" fill="#6FBF4A" stroke="#4A8F2E" stroke-width="2" transform="rotate(20 74 50)"/><circle cx="40" cy="62" r="8" fill="#9FBF3F" stroke="#5A7A2A" stroke-width="2.5"/><circle cx="58" cy="50" r="8" fill="#9FBF3F" stroke="#5A7A2A" stroke-width="2.5"/><circle cx="74" cy="38" r="7" fill="#9FBF3F" stroke="#5A7A2A" stroke-width="2.5"/><circle cx="37" cy="59" r="2.4" fill="#fff" opacity=".55"/>${face(58,50,.5,'#3A4A14')}`),
+orange:()=>PW(`<circle cx="48" cy="54" r="30" fill="#F08A1E" stroke="#B05A0E" stroke-width="2.5"/><path d="M48 24 Q48 14 54 10" stroke="#8A5628" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M54 14 Q68 8 72 18 Q60 26 54 14 Z" fill="#6FBF4A" stroke="#4A8F2E" stroke-width="2"/><g stroke="#B05A0E" stroke-width="1.6" opacity=".45"><path d="M48 24 V84 M18 54 H78 M27 33 L69 75 M69 33 L27 75"/></g><ellipse cx="34" cy="40" rx="6" ry="9" fill="#fff" opacity=".35" transform="rotate(-24 34 40)"/>${face(48,56,1,'#7A3A06')}`),
+pizza:()=>PW(`<path d="M50 12 L86 82 Q50 94 14 82 Z" fill="#F0C060" stroke="#B07A20" stroke-width="2.5" stroke-linejoin="round"/><path d="M50 22 L78 78 Q50 88 22 78 Z" fill="#E2543A" opacity=".9"/><path d="M50 26 L74 76 Q50 84 26 76 Z" fill="#FFD98A"/><circle cx="44" cy="52" r="6" fill="#B03A26" stroke="#7A2416" stroke-width="1.6"/><circle cx="60" cy="66" r="5.4" fill="#B03A26" stroke="#7A2416" stroke-width="1.6"/><circle cx="38" cy="72" r="4.6" fill="#B03A26" stroke="#7A2416" stroke-width="1.6"/><path d="M52 40 q6 4 0 8" fill="none" stroke="#6FBF4A" stroke-width="3" stroke-linecap="round"/><path d="M14 82 Q50 94 86 82" fill="none" stroke="#B07A20" stroke-width="4"/>`),
+oil:()=>PW(`<path d="M40 30 h20 v10 q14 8 14 26 v18 q0 8 -8 8 h-32 q-8 0 -8 -8 v-18 q0 -18 14 -26 Z" fill="#FFE3A0" stroke="#B07A20" stroke-width="2.5"/><path d="M32 60 h36 v22 q0 6 -6 6 h-24 q-6 0 -6 -6 Z" fill="#F0C040"/><rect x="40" y="18" width="20" height="12" rx="3" fill="#8A5628" stroke="#5A3410" stroke-width="2"/><rect x="34" y="64" width="32" height="16" rx="3" fill="#FFFBF2" stroke="#B07A20" stroke-width="2"/><text x="50" y="77" text-anchor="middle" font-size="13" font-weight="800" fill="#B03A26" style="font-family:'Baloo Bhaijaan 2',sans-serif">زيت</text><path d="M44 44 q-6 8 0 12" fill="none" stroke="#fff" stroke-width="3" opacity=".7" stroke-linecap="round"/>`),
+biscuit:()=>PW(`<circle cx="50" cy="54" r="30" fill="#D9A063" stroke="#8A5628" stroke-width="2.5"/><circle cx="50" cy="54" r="24" fill="#E8B878" opacity=".7"/><circle cx="38" cy="42" r="4.6" fill="#5A3410"/><circle cx="62" cy="46" r="4" fill="#5A3410"/><circle cx="44" cy="66" r="4.2" fill="#5A3410"/><circle cx="64" cy="64" r="3.4" fill="#5A3410"/><circle cx="52" cy="52" r="3" fill="#5A3410"/>${face(50,56,.8,'#5A3410')}`),
+nuts:()=>PW(`<path d="M14 58 H86 Q80 88 50 88 Q20 88 14 58 Z" fill="#37B79A" stroke="#1F8871" stroke-width="2.5"/><ellipse cx="50" cy="58" rx="36" ry="8" fill="#8FE0CD" stroke="#1F8871" stroke-width="2.5"/><ellipse cx="34" cy="50" rx="9" ry="13" fill="#D9A063" stroke="#8A5628" stroke-width="2" transform="rotate(-20 34 50)"/><ellipse cx="52" cy="46" rx="10" ry="10" fill="#C87A3C" stroke="#8A4E22" stroke-width="2"/><path d="M46 46 q6 -6 12 0 q-6 6 -12 0" fill="none" stroke="#8A4E22" stroke-width="2"/><ellipse cx="68" cy="50" rx="8" ry="12" fill="#E8B878" stroke="#8A5628" stroke-width="2" transform="rotate(22 68 50)"/><circle cx="30" cy="46" r="2.4" fill="#fff" opacity=".5"/>`),
+banana:()=>PW(`<path d="M22 34 Q26 70 58 78 Q84 82 88 66 Q66 70 46 56 Q32 46 30 30 Z" fill="#F0C040" stroke="#B07A20" stroke-width="2.5" stroke-linejoin="round"/><path d="M30 26 Q34 60 62 70 Q86 74 90 58 Q68 62 48 48 Q36 38 36 24 Z" fill="#FFDE7A" stroke="#B07A20" stroke-width="2.5" stroke-linejoin="round"/><path d="M22 34 l-3 -8 M30 26 l-2 -8" stroke="#8A5628" stroke-width="4" stroke-linecap="round"/><path d="M88 66 l6 2 M90 58 l6 2" stroke="#8A5628" stroke-width="4" stroke-linecap="round"/><path d="M40 36 Q48 52 66 60" fill="none" stroke="#fff" stroke-width="3" opacity=".5"/>${face(58,58,.7,'#7A4A08')}`),
+potato:()=>PW(`<ellipse cx="50" cy="56" rx="32" ry="24" fill="#C89A5A" stroke="#8A5628" stroke-width="2.5" transform="rotate(-12 50 56)"/><ellipse cx="36" cy="46" rx="4" ry="3" fill="#8A5628" opacity=".5"/><ellipse cx="64" cy="52" rx="3.4" ry="2.6" fill="#8A5628" opacity=".5"/><ellipse cx="52" cy="72" rx="3.6" ry="2.4" fill="#8A5628" opacity=".5"/><ellipse cx="34" cy="44" rx="8" ry="5" fill="#fff" opacity=".22" transform="rotate(-24 34 44)"/>${face(50,58,.95,'#5A3410')}`),
+tomato:()=>PW(`<circle cx="50" cy="56" r="30" fill="#E2543A" stroke="#8A2416" stroke-width="2.5"/><path d="M50 26 l-12 -8 l4 10 l-14 -2 l10 8 l-8 6 l14 -2 l6 8 l6 -8 l14 2 l-8 -6 l10 -8 l-14 2 l4 -10 Z" fill="#6FBF4A" stroke="#4A8F2E" stroke-width="2" stroke-linejoin="round"/><path d="M50 22 v-8" stroke="#4A8F2E" stroke-width="4" stroke-linecap="round"/><ellipse cx="36" cy="44" rx="6" ry="9" fill="#fff" opacity=".33" transform="rotate(-24 36 44)"/>${face(50,58,1,'#5A1008')}`),
+strawberry:()=>PW(`<path d="M50 30 C70 30 82 44 78 60 C74 78 60 90 50 90 C40 90 26 78 22 60 C18 44 30 30 50 30 Z" fill="#E2543A" stroke="#8A2416" stroke-width="2.5"/><path d="M50 30 l-14 -10 l6 10 l-14 -2 l12 8 h20 l12 -8 l-14 2 l6 -10 Z" fill="#6FBF4A" stroke="#4A8F2E" stroke-width="2" stroke-linejoin="round"/><g fill="#FFE3A0">${[[38,48],[58,46],[48,58],[64,60],[34,64],[52,74],[68,74],[42,78]].map(p=>`<ellipse cx="${p[0]}" cy="${p[1]}" rx="2.4" ry="3.2"/>`).join('')}</g>${face(50,64,.8,'#5A1008')}`),
+grapes:()=>PW(`<path d="M50 22 Q52 12 60 10" stroke="#8A5628" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M58 14 Q72 8 76 18 Q64 26 58 14 Z" fill="#6FBF4A" stroke="#4A8F2E" stroke-width="2"/><g fill="#8E5BB8" stroke="#5A3A7A" stroke-width="2">${[[50,34],[36,46],[64,46],[26,60],[50,58],[74,60],[38,72],[62,72],[50,84]].map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="10"/>`).join('')}</g><circle cx="46" cy="30" r="3" fill="#fff" opacity=".5"/><circle cx="32" cy="42" r="2.6" fill="#fff" opacity=".45"/>`),
+carrot:()=>PW(`<path d="M50 26 L70 84 Q50 92 30 84 Z" fill="#F08A1E" stroke="#B05A0E" stroke-width="2.5" stroke-linejoin="round"/><g stroke="#B05A0E" stroke-width="2" opacity=".5"><path d="M38 46 h24 M42 60 h18 M46 74 h10"/></g><path d="M50 26 q-14 -14 -22 -10 q6 12 20 14" fill="#6FBF4A" stroke="#4A8F2E" stroke-width="2"/><path d="M50 26 q14 -16 24 -12 q-6 14 -22 16" fill="#6FBF4A" stroke="#4A8F2E" stroke-width="2"/><path d="M50 26 v-12" stroke="#4A8F2E" stroke-width="4" stroke-linecap="round"/>${face(50,54,.7,'#7A3A06')}`)
+};
+
+/* ================= البيانات ================= */
+const FOOD={
+ 'تفاح':'apple','تمر':'dates','توت':'berries','تين':'fig','زيتون':'olive','برتقال':'orange','بيتزا':'pizza',
+ 'زيت':'oil','بسكويت':'biscuit','مكسرات':'nuts','موز':'banana','بطاطا':'potato','طماطم':'tomato',
+ 'فراولة':'strawberry','عنب':'grapes','جزر':'carrot'};
+const picOf=w=>PICS[FOOD[w]]();
+const STAGE1=['تفاح','تمر','توت','تين','زيتون','برتقال','موز','بطاطا','طماطم','فراولة','عنب','جزر'];
+const NO_T_HINT={
+ 'موز':'«موز» ليس فيها حرف التاء! مـ و ز — اتركها في الرف 🍌',
+ 'بطاطا':'«بطاطا» فيها طاء (ط) وليس تاء! الطاء لها نقطة واحدة وشكل مختلف 🥔',
+ 'طماطم':'«طماطم» فيها طاء (ط) مرتين! نبحث عن التاء ذات النقطتين 🍅',
+ 'فراولة':'«فراولة» تنتهي بتاء مربوطة (ة) مدوّرة! نبحث عن التاء المفتوحة (ت) 🍓',
+ 'عنب':'«عنب» ليس فيها حرف التاء! عـ نـ ب 🍇',
+ 'جزر':'«جزر» ليس فيها حرف التاء! جـ ز ر 🥕'};
+const WORDS2=[
+ {w:'تمر',pic:'dates',say:'تمر! حلو ومغذّي 🌴'},
+ {w:'تفاح',pic:'apple',say:'تفاح! طبق تفاح لذيذ 🍎'},
+ {w:'زيتون',pic:'olive',say:'زيتون! التاء في وسطه 🫒'}];
+const RECIPES=[
+ {pos:0,items:['تفاح','تمر','تين']},
+ {pos:1,items:['زيتون','برتقال','بيتزا']},
+ {pos:2,items:['زيت','بسكويت','مكسرات']}];
+const RECIPE_CAP=3;
+const ORDERS=[
+ {need:['تفاح','تمر','توت'],plates:[['تفاح','تمر','توت'],['تفاح','موز','توت'],['تمر','بطاطا','توت']]},
+ {need:['زيتون','بيتزا','بسكويت'],plates:[['زيتون','بيتزا','موز'],['زيتون','بيتزا','بسكويت'],['زيتون','طماطم','بسكويت']]},
+ {need:['تين','برتقال','مكسرات'],plates:[['تين','برتقال','عنب'],['تين','فراولة','مكسرات'],['تين','برتقال','مكسرات']]}];
+const STAGE_META=[null,
+ {t:'اختيار المكونات',s:'اختر الأطعمة التي في اسمها حرف التاء لتضيفها إلى السلة'},
+ {t:'تقطيع الكلمات',s:'رتّب حروف الكلمة على لوح التقطيع ليظهر الطبق'},
+ {t:'وصفة الحروف',s:'ضع كل صورة في الوصفة التي توافق موقع التاء'},
+ {t:'تقديم الطبق',s:'اختر الطبق الذي يطابق طلب الزبون'}];
+const wordSpans=(w,hl)=>w.split('').map(ch=>(hl&&ch==='ت')?`<span class="taa">${ch}</span>`:ch).join('');
+function foodHTML(w,i,hl,mini){
+ return `<div class="food${mini?' mini':' drag'}" ${mini?'':'role="button" tabindex="0"'} data-word="${w}" aria-label="${w}">
+  <span class="okmark">✓</span>${picOf(w)}<div class="fw">${wordSpans(w,hl)}</div></div>`;
+}
+
+/* ================= الصوت ================= */
+const MEL=[523,0,659,0,784,0,659,0,587,0,659,0,880,0,784,0,659,0,523,0,587,0,659,0,784,0,659,0,523,0,0,0];
+const BASS=[131,0,0,0,0,0,0,0,98,0,0,0,0,0,0,0,110,0,0,0,0,0,0,0,87,0,0,0,0,0,0,0];
+const AudioEng={ctx:null,master:null,music:null,delay:null,nbuf:null,step:0,nextT:0,
+ init(){if(this.ctx)return;const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
+  const c=this.ctx=new AC();const comp=c.createDynamicsCompressor();comp.connect(c.destination);
+  this.master=c.createGain();this.master.gain.value=S.sound?.9:0;this.master.connect(comp);
+  this.music=c.createGain();this.music.gain.value=.4;this.music.connect(this.master);
+  this.delay=c.createDelay(.8);this.delay.delayTime.value=.28;const fb=c.createGain();fb.gain.value=.26;const wet=c.createGain();wet.gain.value=.18;
+  this.delay.connect(fb);fb.connect(this.delay);this.delay.connect(wet);wet.connect(this.master);
+  this.nbuf=c.createBuffer(1,c.sampleRate,c.sampleRate);const nd=this.nbuf.getChannelData(0);for(let i=0;i<nd.length;i++)nd[i]=Math.random()*2-1;
+  const hb=c.createBuffer(1,c.sampleRate*2,c.sampleRate);const hd=hb.getChannelData(0);let l=0;
+  for(let i=0;i<hd.length;i++){l=(l+.02*(Math.random()*2-1))/1.02;hd[i]=l*3.5;}
+  const hs=c.createBufferSource();hs.buffer=hb;hs.loop=true;const hf=c.createBiquadFilter();hf.type='lowpass';hf.frequency.value=300;const hg=c.createGain();hg.gain.value=.035;
+  hs.connect(hf);hf.connect(hg);hg.connect(this.master);hs.start();
+  const lfo=c.createOscillator();lfo.frequency.value=.16;const lg=c.createGain();lg.gain.value=.016;lfo.connect(lg);lg.connect(hg.gain);lfo.start();
+  this.nextT=c.currentTime+.15;setInterval(()=>this.sched(),110);},
+ sched(){const c=this.ctx;if(!c||c.state!=='running')return;if(!S.sound){this.nextT=c.currentTime+.1;return;}
+  while(this.nextT<c.currentTime+.3){const i=this.step%32;
+   if(MEL[i])this.marimba(MEL[i],this.nextT,.11);
+   if(BASS[i])this.pluck(BASS[i],this.nextT);
+   if(i%4===2)this.shaker(this.nextT);
+   this.nextT+=.27;this.step++;}},
+ marimba(f,t,v){const c=this.ctx,o=c.createOscillator(),o2=c.createOscillator(),g=c.createGain(),g2=c.createGain();
+  o.type='sine';o.frequency.value=f;o2.type='triangle';o2.frequency.value=f*2.01;g2.gain.value=.09;
+  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.005);g.gain.exponentialRampToValueAtTime(.0001,t+.65);
+  o.connect(g);o2.connect(g2);g2.connect(g);g.connect(this.music);g.connect(this.delay);o.start(t);o2.start(t);o.stop(t+.7);o2.stop(t+.7);},
+ pluck(f,t){const c=this.ctx,o=c.createOscillator(),g=c.createGain();o.type='triangle';o.frequency.value=f;
+  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.1,t+.006);g.gain.exponentialRampToValueAtTime(.0001,t+.3);
+  o.connect(g);g.connect(this.music);o.start(t);o.stop(t+.32);},
+ shaker(t){const c=this.ctx,s=c.createBufferSource();s.buffer=this.nbuf;const f=c.createBiquadFilter();f.type='highpass';f.frequency.value=7200;const g=c.createGain();
+  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.016,t+.004);g.gain.exponentialRampToValueAtTime(.0001,t+.08);
+  s.connect(f);f.connect(g);g.connect(this.music);s.start(t);s.stop(t+.09);},
+ setOn(on){if(this.master&&this.ctx)this.master.gain.linearRampToValueAtTime(on?.9:0,this.ctx.currentTime+.15);}
+};
+function tone(f,o){o=o||{};const c=AudioEng.ctx;if(!c||!S.sound)return;const t=c.currentTime+(o.at||0),dur=o.dur||.2;
+ const os=c.createOscillator(),g=c.createGain();os.type=o.type||'sine';os.frequency.setValueAtTime(f,t);
+ if(o.slide)os.frequency.exponentialRampToValueAtTime(Math.max(40,f+o.slide),t+dur);
+ g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(o.vol||.2,t+.008);g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+ os.connect(g);g.connect(AudioEng.master);if(o.echo)g.connect(AudioEng.delay);os.start(t);os.stop(t+dur+.05);}
+function noiseFx(o){o=o||{};const c=AudioEng.ctx;if(!c||!S.sound||!AudioEng.nbuf)return;const t=c.currentTime+(o.at||0),dur=o.dur||.3;
+ const s=c.createBufferSource();s.buffer=AudioEng.nbuf;s.loop=true;const f=c.createBiquadFilter();f.type=o.ftype||'bandpass';f.frequency.setValueAtTime(o.f||1200,t);f.Q.value=o.q||1;
+ if(o.slide)f.frequency.exponentialRampToValueAtTime(Math.max(60,(o.f||1200)+o.slide),t+dur);
+ const g=c.createGain();g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(o.vol||.12,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+ s.connect(f);f.connect(g);g.connect(AudioEng.master);s.start(t);s.stop(t+dur+.05);}
+const sfx={
+ blip:()=>tone(700,{type:'square',dur:.05,vol:.07}),
+ pickup:()=>tone(520,{dur:.09,vol:.12,slide:200}),
+ chop:()=>{noiseFx({dur:.06,vol:.13,f:2600,q:1.4});tone(190,{dur:.07,vol:.14});},
+ plop:()=>{tone(420,{dur:.12,vol:.15,slide:-190});noiseFx({dur:.07,vol:.05,f:900});},
+ good:()=>{tone(660,{dur:.12,vol:.15,echo:1});tone(990,{at:.08,dur:.24,vol:.13,echo:1});},
+ wrong:()=>{tone(392,{type:'triangle',dur:.18,vol:.12});tone(311,{type:'triangle',at:.16,dur:.3,vol:.12});},
+ sizzle:()=>noiseFx({dur:.85,vol:.09,f:3800,ftype:'highpass',q:.6}),
+ ding:()=>{tone(1319,{dur:.4,vol:.12,echo:1});tone(1760,{at:.06,dur:.5,vol:.09,echo:1});},
+ clang:()=>{tone(320,{type:'triangle',dur:.3,vol:.08,echo:1});noiseFx({dur:.2,vol:.05,f:2200});},
+ fanfare:()=>{[523,659,784,1047,1319].forEach((f,i)=>tone(f,{at:i*.1,dur:.5,vol:.15,echo:1}));noiseFx({dur:.5,vol:.04,f:4000,ftype:'highpass',at:.3});},
+ medal:()=>{sfx.fanfare();[1047,1319,1568,2093].forEach((f,i)=>tone(f,{at:.7+i*.13,dur:.7,vol:.12,echo:1}));},
+ whoosh:()=>noiseFx({dur:.45,vol:.09,f:500,slide:1600}),
+ tick:()=>tone(1500,{dur:.04,vol:.04})
+};
+
+/* ================= الجسيمات ================= */
+const bg={cv:$('#bgcv'),cx:null,dust:[]};const fx={cv:$('#fxcv'),cx:null,ps:[]};
+function resize(){const d=Math.min(window.devicePixelRatio||1,2);[bg,fx].forEach(o=>{o.cv.width=Math.floor(innerWidth*d);o.cv.height=Math.floor(innerHeight*d);o.cv.style.width=innerWidth+'px';o.cv.style.height=innerHeight+'px';o.cx=o.cv.getContext('2d');o.cx.setTransform(d,0,0,d,0,0);});
+ bg.dust=RM?[]:Array.from({length:38},()=>({x:rnd(0,innerWidth),y:rnd(0,innerHeight),r:rnd(.8,2.6),v:rnd(4,13),a:rnd(.12,.4),ph:rnd(0,6.28),col:pick(['#FFFDF7','#FFE3A0','#FFC24A','#FFFFFF'])}));}
+function fxSpark(x,y,n,col){if(RM)n=Math.min(n,3);for(let i=0;i<n;i++){if(fx.ps.length>520)return;const a=rnd(0,6.28),sp=rnd(30,200);fx.ps.push({type:'spark',x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-40,r:rnd(1.5,3.5),t:0,life:rnd(.4,.8),col:col||pick(PAL)});}}
+function fxConfetti(x,y,n){if(RM)n=Math.min(n,8);for(let i=0;i<n;i++){if(fx.ps.length>520)return;fx.ps.push({type:'conf',x,y,vx:rnd(-280,280),vy:rnd(-440,-90),g:340,rot:rnd(0,6.28),vr:rnd(-8,8),w:rnd(5,9),h:rnd(8,14),t:0,life:rnd(1.1,1.9),col:pick(PAL)});}}
+function fxSteam(x,y,n){if(RM)n=Math.min(n,2);for(let i=0;i<n;i++){if(fx.ps.length>520)return;fx.ps.push({type:'steam',x:x+rnd(-12,12),y,vx:rnd(-14,14),vy:rnd(-52,-26),r:rnd(7,14),t:0,life:rnd(1,1.8),ph:rnd(0,6.28)});}}
+function fxStars(x,y,n){if(RM)n=Math.min(n,4);for(let i=0;i<n;i++){if(fx.ps.length>520)return;fx.ps.push({type:'star',x,y,vx:rnd(-280,280),vy:rnd(-460,-150),g:360,r:rnd(7,14),rot:rnd(0,6.28),vr:rnd(-6,6),t:0,life:rnd(1.3,2.2)});}}
+function awardStars(n,x,y){const box=$('#starsBox');if(!box)return;const r=box.getBoundingClientRect(),tx=r.left+r.width/2,ty=r.top+r.height/2;
+ for(let i=0;i<n;i++){const sx=x+rnd(-14,14),sy=y+rnd(-10,10),dx=tx-sx,dy=ty-sy,len=Math.hypot(dx,dy)||1;fx.ps.push({type:'home',sx,sy,px:-dy/len,py:dx/len,arc:rnd(-70,70),tx,ty,t:0,dur:.78,delay:i*.13,done:false});}}
+function starHUD(){$('#starCount').textContent=arNum(S.stars);const b=$('#starsBox');b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop');}
+const easeIO=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+function starPath(cx,x,y,r,rot){cx.beginPath();for(let i=0;i<10;i++){const a=rot-Math.PI/2+i*Math.PI/5,rr=i%2?r*.45:r;const px=x+Math.cos(a)*rr,py=y+Math.sin(a)*rr;i?cx.lineTo(px,py):cx.moveTo(px,py);}cx.closePath();}
+function drawBG(dt,t){const cx=bg.cx;if(!cx)return;cx.clearRect(0,0,innerWidth,innerHeight);
+ for(const d of bg.dust){d.y-=d.v*dt;d.x+=Math.sin(t*.6+d.ph)*11*dt;if(d.y<-8){d.y=innerHeight+8;d.x=rnd(0,innerWidth);}
+  cx.globalAlpha=d.a*(.6+.4*Math.sin(t*1.6+d.ph));cx.fillStyle=d.col;cx.beginPath();cx.arc(d.x,d.y,d.r,0,6.283);cx.fill();}
+ cx.globalAlpha=1;}
+function drawFX(dt){const cx=fx.cx;if(!cx)return;cx.clearRect(0,0,innerWidth,innerHeight);
+ for(let i=fx.ps.length-1;i>=0;i--){const p=fx.ps[i];
+  if(p.type==='spark'){p.t+=dt;if(p.t>=p.life){fx.ps.splice(i,1);continue;}p.vy+=140*dt;p.x+=p.vx*dt;p.y+=p.vy*dt;const a=1-p.t/p.life;
+   cx.globalAlpha=a*.3;cx.fillStyle=p.col;cx.beginPath();cx.arc(p.x,p.y,p.r*2.6,0,6.283);cx.fill();cx.globalAlpha=a;cx.beginPath();cx.arc(p.x,p.y,p.r,0,6.283);cx.fill();}
+  else if(p.type==='conf'){p.t+=dt;if(p.t>=p.life||p.y>innerHeight+30){fx.ps.splice(i,1);continue;}p.vy+=p.g*dt;p.vx*=.99;p.x+=p.vx*dt;p.y+=p.vy*dt;p.rot+=p.vr*dt;
+   cx.save();cx.translate(p.x,p.y);cx.rotate(p.rot);cx.globalAlpha=Math.min(1,2*(1-p.t/p.life));cx.fillStyle=p.col;cx.fillRect(-p.w/2,-p.h/2,p.w,p.h);cx.restore();}
+  else if(p.type==='steam'){p.t+=dt;if(p.t>=p.life){fx.ps.splice(i,1);continue;}p.y+=p.vy*dt;p.x+=p.vx*dt+Math.sin(p.t*2.4+p.ph)*9*dt;p.r+=20*dt;
+   cx.globalAlpha=.3*(1-p.t/p.life);cx.fillStyle='#FFFFFF';cx.beginPath();cx.arc(p.x,p.y,p.r,0,6.283);cx.fill();}
+  else if(p.type==='star'){p.t+=dt;if(p.t>=p.life||p.y>innerHeight+30){fx.ps.splice(i,1);continue;}p.vy+=p.g*dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.rot+=p.vr*dt;
+   cx.globalAlpha=Math.min(1,2*(1-p.t/p.life));starPath(cx,p.x,p.y,p.r,p.rot);cx.fillStyle='#FFC24A';cx.fill();cx.strokeStyle='#C87A3C';cx.lineWidth=1.2;cx.stroke();}
+  else if(p.type==='home'){if(p.delay>0){p.delay-=dt;cx.globalAlpha=.85;cx.fillStyle='#FFC24A';starPath(cx,p.sx,p.sy,6,p.delay*4);cx.fill();continue;}
+   p.t+=dt/p.dur;if(p.t>=1){if(!p.done){p.done=true;S.stars++;starHUD();sfx.tick();}fx.ps.splice(i,1);continue;}
+   const e=easeIO(Math.min(p.t,1)),bl=Math.sin(e*Math.PI)*p.arc;const x=p.sx+(p.tx-p.sx)*e+p.px*bl,y=p.sy+(p.ty-p.sy)*e+p.py*bl;
+   cx.globalAlpha=.28;cx.fillStyle='#FFC24A';cx.beginPath();cx.arc(x,y,14,0,6.283);cx.fill();cx.globalAlpha=1;starPath(cx,x,y,9,p.t*3);cx.fill();cx.strokeStyle='#C87A3C';cx.lineWidth=1;cx.stroke();}}
+ cx.globalAlpha=1;}
+let rafId=null,lastT=0;
+function tick(now){rafId=requestAnimationFrame(tick);const dt=Math.min(.05,(now-lastT)/1000)||.016;lastT=now;drawBG(dt,now/1000);drawFX(dt);}
+function startLoop(){if(rafId==null){lastT=performance.now();rafId=requestAnimationFrame(tick);}}
+function stopLoop(){if(rafId!=null){cancelAnimationFrame(rafId);rafId=null;}}
+document.addEventListener('visibilitychange',()=>{if(document.hidden)stopLoop();else{startLoop();if(AudioEng.ctx&&AudioEng.ctx.state==='suspended')AudioEng.ctx.resume();}});
+
+/* ================= الشيف ================= */
+let moodTimer=null,talkTimer=null,lastSay=0;
+function setMood(m,dur){const r=$('#chef');if(!r)return;clearTimeout(moodTimer);r.dataset.mood=m;if(m!=='idle')moodTimer=setTimeout(()=>{r.dataset.mood='idle';},dur||(m==='cheer'?2600:1600));}
+function chefSay(text,mood,html){const b=$('#bubble'),r=$('#chef');if(!b)return;if(html)b.innerHTML=text;else b.textContent=text;
+ b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop');lastSay=performance.now();
+ if(r){r.classList.add('talk');clearTimeout(talkTimer);talkTimer=setTimeout(()=>r.classList.remove('talk'),950);}setMood(mood||'happy');}
+function shakeStage(){const s=$('#stage');s.classList.remove('shake');void s.offsetWidth;s.classList.add('shake');}
+
+/* ================= HUD ================= */
+const PIP_LBL=['المكونات','التقطيع','الوصفات','التقديم'];
+function buildPips(){$('#pips').innerHTML=PIP_LBL.map((l,i)=>`<div class="pip"><span class="n">${arNum(i+1)}</span><span class="lbl">${l}</span></div>`).join('');}
+function updatePips(){$$('#pips .pip').forEach((p,i)=>{p.classList.toggle('done',S.done[i]);p.classList.toggle('active',S.stage===i+1&&!S.done[i]);p.querySelector('.n').textContent=S.done[i]?'✓':arNum(i+1);});}
+function updateSoundBtn(){const b=$('#soundBtn');b.innerHTML=(S.sound?sndOnSVG():sndOffSVG())+`<span class="lbl">${S.sound?'الصوت':'صامت'}</span>`;b.classList.toggle('muted',!S.sound);b.setAttribute('aria-pressed',String(S.sound));b.setAttribute('aria-label',S.sound?'كتم الصوت':'تشغيل الصوت');}
+
+/* ================= السحب ================= */
+const dragLayer=$('#dragLayer'),stageEl=$('#stage'),overlayEl=$('#overlay'),fxLayer=$('#fxLayer');
+let drag=null,selEl=null,justDragged=false;
+const overlayOpen=()=>overlayEl.classList.contains('show');
+function clearSel(){if(selEl)selEl.classList.remove('selected');selEl=null;$$('#stage .drop').forEach(d=>d.classList.remove('await'));}
+function endCleanup(d){if(d.clone)d.clone.remove();if(d.el)d.el.classList.remove('ghost');$$('#stage .drop').forEach(z=>z.classList.remove('hover-ok','hover-mid'));}
+function freshRound(){
+ TOKEN++;
+ if(drag){const d=drag;drag=null;try{d.el.releasePointerCapture(d.pid);}catch(e){}endCleanup(d);}
+ S.busy=false;clearSel();fxLayer.innerHTML='';dragLayer.innerHTML='';
+}
+function tapDrag(el){
+ if(S.busy||overlayOpen())return;
+ if(S.tapAction){S.tapAction(el);return;}
+ if(selEl===el){clearSel();return;}
+ clearSel();selEl=el;el.classList.add('selected');sfx.blip();
+ $$('#stage .drop:not(.filled)').forEach(z=>z.classList.add('await'));
+}
+function onDown(e){
+ if(drag||S.busy||overlayOpen()||S.screen!=='stage'||e.isPrimary===false)return;
+ const t=e.target.closest?e.target.closest('.drag'):null;
+ if(!t||t.classList.contains('locked')||t.classList.contains('picked')||!stageEl.contains(t))return;
+ e.preventDefault();
+ const r=t.getBoundingClientRect();
+ const clone=t.cloneNode(true);clone.classList.add('drag-clone');clone.classList.remove('selected','ghost','shake');
+ clone.style.width=r.width+'px';clone.style.height=r.height+'px';clone.style.left=r.left+'px';clone.style.top=r.top+'px';
+ dragLayer.appendChild(clone);t.classList.add('ghost');
+ drag={el:t,clone,pid:e.pointerId,ox:e.clientX-r.left,oy:e.clientY-r.top,sx:e.clientX,sy:e.clientY,moved:false,lastX:e.clientX,trail:0,hit:null};
+ try{t.setPointerCapture(e.pointerId);}catch(err){}
+ clearSel();sfx.pickup();
+}
+function onMove(e){
+ if(!drag||e.pointerId!==drag.pid)return;
+ e.preventDefault();
+ const x=e.clientX,y=e.clientY;
+ if(Math.hypot(x-drag.sx,y-drag.sy)>7)drag.moved=true;
+ const tilt=clamp((x-drag.lastX)*1.2,-10,10);drag.lastX=x;
+ drag.clone.style.left=(x-drag.ox)+'px';drag.clone.style.top=(y-drag.oy)+'px';
+ drag.clone.style.setProperty('--tilt',tilt+'deg');
+ drag.trail+=Math.abs(tilt)+2;if(drag.trail>28){drag.trail=0;fxSpark(x,y,1,'#FFC24A');}
+ if(y<90)window.scrollBy(0,-10);else if(y>innerHeight-150)window.scrollBy(0,10);
+ let hit=null;
+ for(const z of $$('#stage .drop')){
+  z.classList.remove('hover-ok','hover-mid');
+  if(z.classList.contains('filled'))continue;
+  const r=z.getBoundingClientRect();
+  if(x>=r.left&&x<=r.right&&y>=r.top&&y<=r.bottom)hit=z;
+ }
+ if(hit){const v=S.hoverValid?S.hoverValid(drag.el,hit):'mid';hit.classList.add(v==='ok'?'hover-ok':'hover-mid');}
+ drag.hit=hit;
+}
+function onUp(e){
+ if(!drag||e.pointerId!==drag.pid)return;
+ const d=drag;drag=null;
+ try{d.el.releasePointerCapture(e.pointerId);}catch(err){}
+ $$('#stage .drop').forEach(z=>z.classList.remove('hover-ok','hover-mid'));
+ justDragged=true;setTimeout(()=>{justDragged=false;},380);
+ if(!d.moved){d.clone.remove();d.el.classList.remove('ghost');tapDrag(d.el);return;}
+ const zone=d.hit;let ok=false;
+ if(zone&&S.placeHandler)ok=S.placeHandler(d.el,zone);
+ if(ok){d.clone.remove();d.el.classList.remove('ghost');}
+ else{
+  const r=d.el.getBoundingClientRect();
+  const done=()=>{d.clone.remove();if(document.contains(d.el)){d.el.classList.remove('ghost');if(zone){d.el.classList.add('shake');setTimeout(()=>d.el.classList.remove('shake'),460);}}};
+  if(d.clone.animate){const dx=r.left-parseFloat(d.clone.style.left),dy=r.top-parseFloat(d.clone.style.top);
+   d.clone.animate([{transform:'translate(0,0) scale(1.07)'},{transform:`translate(${dx}px,${dy}px) scale(1)`}],{duration:280,easing:'cubic-bezier(.3,.7,.4,1)'}).onfinish=done;}
+  else done();
+  if(!zone)sfx.blip();
+ }
+}
+function onCancel(e){if(!drag||e.pointerId!==drag.pid)return;const d=drag;drag=null;endCleanup(d);}
+document.addEventListener('pointerdown',onDown,{passive:false});
+document.addEventListener('pointermove',onMove,{passive:false});
+document.addEventListener('pointerup',onUp);
+document.addEventListener('pointercancel',onCancel);
+document.addEventListener('lostpointercapture',e=>{if(drag&&e.pointerId===drag.pid){const d=drag;drag=null;endCleanup(d);}});
+document.addEventListener('contextmenu',e=>{if(e.target.closest&&e.target.closest('.drag'))e.preventDefault();});
+function flyVisual(html,from,to,dur,cb){
+ const el=document.createElement('div');el.innerHTML=html;
+ el.style.cssText=`position:fixed;left:${from.x}px;top:${from.y}px;width:${from.w}px;pointer-events:none;z-index:56;`;
+ fxLayer.appendChild(el);
+ const dx=to.x-from.x,dy=to.y-from.y;
+ if(el.animate){el.animate([{transform:'translate(-50%,-50%) scale(1) rotate(0deg)',opacity:1},{transform:`translate(calc(-50% + ${dx}px),calc(-50% + ${dy}px)) scale(.45) rotate(-16deg)`,opacity:.3}],{duration:dur||600,easing:'cubic-bezier(.45,-.1,.55,1)'}).onfinish=()=>{el.remove();if(cb)cb();};}
+ else{el.remove();if(cb)cb();}
+}
+
+/* ================= قوالب ================= */
+function stageHead(n,title,obj){return `<div class="stage-head"><span class="stage-chip">المرحلة ${arNum(n)} من ٤</span><h2 class="stage-title">${title}</h2><p class="stage-obj">${obj}</p><span class="target-chip">سر الوصفة: <b>ت</b> — نقطتان فوق الجسم</span></div>`;}
+function kitchenShell(inner){
+ let wisps='';for(let i=0;i<4;i++)wisps+=`<span class="steamwisp" style="right:${34+i*9}px;animation-delay:${(i*1.1).toFixed(1)}s"></span>`;
+ return `<div class="kitchen"><div class="wall">
+   <div class="window">${windowSVG()}</div><div class="shelf">${shelfSVG()}</div><div class="potrail">${potrailSVG()}</div>${wisps}
+  </div><div class="station"><div class="station-in">${inner}</div></div></div>`;
+}
+function stageDone(n,msg,btnLabel,cb){
+ S.done[n-1]=true;updatePips();sfx.fanfare();
+ const k=$('#stage .kitchen');const c=k?center(k):{x:innerWidth/2,y:innerHeight/2};
+ fxConfetti(c.x,c.y-40,40);fxStars(c.x,c.y-40,10);
+ const card=document.createElement('div');card.className='done-card';card.innerHTML=`<p>🍽️ ${msg}</p><button class="btn-primary">${btnLabel} ⬅</button>`;
+ card.querySelector('button').addEventListener('click',function(){this.disabled=true;sfx.blip();cb();});
+ stageEl.appendChild(card);card.scrollIntoView({behavior:RM?'auto':'smooth',block:'nearest'});
+}
+
+/* ================= المرحلة ١ ================= */
+function renderStage1(){
+ let picked=0;const total=STAGE1.filter(hasTaa).length;
+ const cards=shuffle(STAGE1).map(w=>foodHTML(w,0,false)).join('');
+ stageEl.innerHTML=stageHead(1,'اختيار المكونات','اضغط على الطعام الذي في اسمه حرف التاء (ت) — أو اسحبه إلى السلة. اترك ما ليس فيه تاء!')+
+ kitchenShell(`<div class="progress-row"><span class="progress-label">في السلة: <span id="s1Count">٠</span> / ${arNum(total)}</span>
+   <span class="mini-dots">${'<span class="mini-dot"></span>'.repeat(total)}</span></div>
+  <div class="pantry" id="pantry">${cards}</div>
+  <div class="basket-zone"><div class="drop basket" id="basket" data-zone="basket" role="button" tabindex="0" aria-label="سلة المكونات">
+    <span class="basket-lbl">سلة المكونات</span>
+    <div class="basket-art">${basketSVG()}</div>
+    <div class="basket-items" id="basketItems"><span class="basket-empty">السلة فارغة… اجمع مكونات التاء 🧺</span></div>
+  </div></div>`);
+ S.hoverValid=()=>'mid';
+ function pickIngredient(el){
+  if(S.busy||el.classList.contains('picked'))return false;
+  const w=el.dataset.word;
+  if(!hasTaa(w)){
+   S.mistakes++;sfx.wrong();shakeStage();
+   el.classList.add('nope');later(500,()=>el.classList.remove('nope'));
+   chefSay(NO_T_HINT[w]||`«${w}» ليس فيها حرف التاء! ابحث عن نقطتين فوق الحرف 🔍`,'sad');
+   return false;
+  }
+  el.classList.add('picked');
+  const from=el.getBoundingClientRect(),basket=$('#basketItems');
+  const empty=basket.querySelector('.basket-empty');if(empty)empty.remove();
+  const to=center(basket);
+  const myIdx=picked;
+  flyVisual(foodHTML(w,0,false),{x:from.left+from.width/2,y:from.top+from.height/2,w:from.width},{x:to.x,y:to.y},580,()=>{
+   const holder=document.createElement('div');holder.innerHTML=foodHTML(w,0,false,true);
+   const m=holder.firstElementChild;m.classList.add('locked');basket.appendChild(m);
+   sfx.plop();const c=center(m);fxSpark(c.x,c.y,7,'#6FBF4A');
+  });
+  sfx.good();picked++;
+  $('#s1Count').textContent=arNum(picked);
+  const dot=$$('#stage .mini-dot')[myIdx];if(dot)dot.classList.add('on');
+  awardStars(2,to.x,to.y);
+  chefSay(pick(PRAISE)+` «${w}» فيها تاء — في السلة! 🧺`,'happy');
+  if(picked===total){S.busy=true;later(1200,()=>stageDone(1,'جمعت كل مكونات التاء! السلة ممتلئة.','التالي: تقطيع الكلمات',()=>showTransition(2)));}
+  return true;
+ }
+ S.tapAction=pickIngredient;
+ S.placeHandler=(el,zone)=>zone.dataset.zone==='basket'?pickIngredient(el):false;
+ S.hintHandler=()=>{
+  const el=$$('#pantry .food:not(.picked)').find(f=>hasTaa(f.dataset.word));
+  if(el){el.style.boxShadow='0 0 0 4px rgba(111,191,74,.85),0 5px 0 #8A4E22';later(2100,()=>{el.style.boxShadow='';});
+   chefSay(`انظر! «${el.dataset.word}» في اسمها حرف التاء — اضغط عليها لتدخل السلة 🧺`,'happy');}
+ };
+ chefSay('أهلاً في مطبخي! اجمع الأطعمة التي في اسمها حرف التاء فقط 🧺','idle');
+}
+
+/* ================= المرحلة ٢ ================= */
+function renderStage2(round){
+ freshRound();
+ const data=WORDS2[round],letters=data.w.split('');
+ const pips=WORDS2.map((w,i)=>`<div class="rpip ${i<round?'done':i===round?'cur':''}">${picOf(w.w)}</div>`).join('');
+ const slots=letters.map((l,i)=>`<div class="drop lslot" data-idx="${i}" data-ghost="${l}" role="button" tabindex="0" aria-label="مكان الحرف ${arNum(i+1)}"></div>`).join('');
+ let sh=shuffle(letters);if(sh.join('')===letters.join(''))sh=shuffle(sh);
+ const tiles=sh.map((l,i)=>`<div class="drag ltile" role="button" tabindex="0" data-letter="${l}" aria-label="حرف ${l}" style="animation:popIn .35s ${i*60}ms both">${l}</div>`).join('');
+ stageEl.innerHTML=stageHead(2,'تقطيع الكلمات','رتّب الحروف على لوح التقطيع لتكوّن الكلمة الصحيحة — القراءة تبدأ من اليمين!')+
+ kitchenShell(`<div class="round-pips">${pips}</div>
+  <div class="recipe-line" id="recipeLine">
+    <div class="dish-pic">${picOf(data.w)}</div>
+    <div class="slots" id="slots">${slots}</div>
+    <div class="dish-reveal" id="dishReveal"><div class="dish-inner">
+      <span class="dish-steam" style="margin-left:-30px"></span><span class="dish-steam" style="animation-delay:.9s;margin-left:16px"></span>
+      <div class="plate">${plateSVG()}<div class="plate-foods">${picOf(data.w)}${picOf(data.w)}${picOf(data.w)}</div></div>
+      <div class="dish-word">${data.w}</div></div></div>
+  </div>
+  <div class="board"><div class="board-lbl">🔪 لوح التقطيع — الحروف المقطّعة</div><div class="tiles" id="tiles">${tiles}</div></div>`);
+ const tilesBox=$('#tiles');
+ S.hoverValid=()=>'ok';
+ S.tapAction=null;
+ S.placeHandler=(tile,slot)=>{
+  if(S.busy||slot.classList.contains('filled'))return false;
+  slot.appendChild(tile);tile.classList.add('in-slot');tile.classList.remove('selected');
+  slot.classList.add('filled');
+  sfx.chop();const c=center(slot);fxSpark(c.x,c.y,4,'#FFC24A');
+  checkFull();
+  return true;
+ };
+ function returnTile(t,slot){tilesBox.appendChild(t);t.classList.remove('in-slot');slot.classList.remove('filled');sfx.blip();}
+ function checkFull(){
+  const slotsArr=$$('#slots .lslot');
+  if(slotsArr.some(s=>!s.querySelector('.ltile')))return;
+  S.busy=true;
+  const wrong=[];
+  slotsArr.forEach((s,i)=>{
+   const t=s.querySelector('.ltile');
+   if(t.dataset.letter===letters[i])later(120*i,()=>{t.classList.add('locked');s.classList.add('locked');sfx.chop();const c=center(s);fxSpark(c.x,c.y,4,'#6FBF4A');});
+   else wrong.push([s,t]);
+  });
+  if(wrong.length){
+   later(120*slotsArr.length+280,()=>{
+    wrong.forEach(w=>w[1].classList.add('shake'));
+    sfx.wrong();shakeStage();S.mistakes++;
+    chefSay(`قريب جداً! الأخضر صحيح ✓ رتّب الباقي من اليمين: ${letters.join(' ثم ')}`,'sad');
+    later(500,()=>{wrong.forEach(w=>{w[1].classList.remove('shake','in-slot');returnTile(w[1],w[0]);});S.busy=false;});
+   });
+  }else later(120*slotsArr.length+320,wordDone);
+ }
+ function wordDone(){
+  const rev=$('#dishReveal');if(rev)rev.classList.add('show');
+  sfx.sizzle();sfx.ding();
+  const line=$('#recipeLine'),c=line?center(line):{x:innerWidth/2,y:innerHeight/2};
+  fxSteam(c.x,c.y-30,10);fxConfetti(c.x,c.y,26);awardStars(3,c.x,c.y-20);
+  chefSay(data.say+' — الكلمة صحيحة والطبق جاهز! 🍽️','cheer');
+  const rp=$$('#stage .rpip')[round];if(rp){rp.classList.remove('cur');rp.classList.add('done');}
+  later(2300,()=>{
+   if(round<WORDS2.length-1)renderStage2(round+1);
+   else stageDone(2,'قطّعت كل الكلمات وصارت أطباقاً!','التالي: وصفة الحروف',()=>showTransition(3));
+  });
+ }
+ S.hintHandler=()=>{
+  $$('#slots .lslot').forEach(s=>s.classList.add('hinted'));
+  chefSay('انظر إلى الحروف الخفيفة في الأماكن — هذا هو الترتيب الصحيح 💡','happy');
+  later(2600,()=>$$('#slots .lslot').forEach(s=>s.classList.remove('hinted')));
+ };
+ chefSay(`قطّعنا كلمة «${data.w}» إلى حروف! رتّبها من اليمين لتظهر الصورة 🔪`,'idle');
+}
+
+/* ================= المرحلة ٣ ================= */
+function renderStage3(){
+ freshRound();
+ const counts=[0,0,0];let placed=0;const all=RECIPES.flatMap(r=>r.items);
+ const recipes=RECIPES.map(r=>`<div class="recipe" data-pos="${r.pos}">
+   <span class="recipe-count" id="rc${r.pos}">٠ / ${arNum(RECIPE_CAP)}</span>
+   <div class="recipe-head"><b>وصفة ${POS_NAME[r.pos]}</b><span>${POS_FORM[r.pos]}</span></div>
+   <div class="drop recipe-drop" data-pos="${r.pos}" role="button" tabindex="0" aria-label="وصفة ${POS_NAME[r.pos]}"><span class="recipe-hint">ضع ${arNum(RECIPE_CAP)} صور هنا</span></div>
+ </div>`).join('');
+ const tray=shuffle(all).map(w=>foodHTML(w,0,true)).join('');
+ stageEl.innerHTML=stageHead(3,'وصفة الحروف','لكل وصفة ٣ صور! انظر إلى الحرف الملوّن: هل التاء في أول الكلمة أم وسطها أم آخرها؟')+
+ kitchenShell(`<div class="progress-row"><span class="progress-label">صور في الوصفات: <span id="s3Count">٠</span> / ${arNum(all.length)}</span></div>
+  <div class="recipes" id="recipes">${recipes}</div>
+  <div class="tray" id="tray"><span class="tray-cap">🧾 مكوّنات جاهزة — اسحب كل صورة إلى وصفتها</span>${tray}</div>`);
+ S.hoverValid=()=>'mid';S.tapAction=null;
+ const posOf=w=>RECIPES.find(r=>r.items.includes(w)).pos;
+ S.placeHandler=(el,zone)=>{
+  if(S.busy||el.classList.contains('locked'))return false;
+  const zp=+zone.dataset.pos,w=el.dataset.word,pos=posOf(w);
+  if(counts[zp]>=RECIPE_CAP){sfx.wrong();chefSay(`وصفة ${POS_NAME[zp]} مكتملة ✓ — اختر وصفة أخرى 🍲`,'sad');return false;}
+  if(pos!==zp){
+   S.mistakes++;sfx.wrong();shakeStage();
+   const rc=$$('#recipes .recipe')[pos];if(rc){rc.classList.add('hintg');later(1700,()=>rc.classList.remove('hintg'));}
+   chefSay(`التاء في «${w}» تقع في <span class="taa">${POS_NAME[pos]}</span> (${POS_FORM[pos]}) — ضعها هناك! 🍲`,'sad',true);
+   return false;
+  }
+  const from=el.getBoundingClientRect();
+  el.classList.add('locked');el.classList.remove('drag','selected');el.removeAttribute('tabindex');el.removeAttribute('role');
+  const hint=zone.querySelector('.recipe-hint');if(hint)hint.remove();
+  zone.appendChild(el);
+  const to=el.getBoundingClientRect();
+  if(el.animate)el.animate([{transform:`translate(${from.left-to.left}px,${from.top-to.top}px) scale(1.12)`},{transform:'translate(0,0) scale(1)'}],{duration:420,easing:'cubic-bezier(.34,1.3,.64,1)'});
+  counts[zp]++;placed++;
+  $('#rc'+zp).textContent=arNum(counts[zp])+' / '+arNum(RECIPE_CAP);
+  $('#s3Count').textContent=arNum(placed);
+  sfx.chop();sfx.good();
+  const c=center(el);fxSpark(c.x,c.y,9,'#6FBF4A');awardStars(1,c.x,c.y);
+  const rc=zone.closest('.recipe');
+  if(counts[zp]>=RECIPE_CAP){
+   zone.classList.add('filled');rc.classList.add('full');
+   const cc=center(rc);fxSpark(cc.x,cc.y,14,'#FFC24A');fxSteam(cc.x,cc.y-20,6);sfx.ding();
+  }
+  if(placed===all.length){S.busy=true;chefSay('الوصفات الثلاث اكتملت! مطبخنا يفوح بالرائحة الشهية 🍲','cheer');
+   later(1400,()=>stageDone(3,'كل صورة في وصفتها الصحيحة!','التالي: تقديم الطبق',()=>showTransition(4)));}
+  else if(counts[zp]>=RECIPE_CAP)chefSay(pick(PRAISE)+` وصفة ${POS_NAME[zp]} اكتملت ✓`,'cheer');
+  else chefSay(pick(PRAISE)+` «${w}» في وصفة ${POS_NAME[zp]} — بقي ${arNum(RECIPE_CAP-counts[zp])} 🍲`,'happy');
+  return true;
+ };
+ S.hintHandler=()=>{
+  const el=$$('#tray .food:not(.locked)')[0];if(!el)return;
+  const p=posOf(el.dataset.word),rc=$$('#recipes .recipe')[p];
+  if(rc){rc.classList.add('hintg');later(2200,()=>rc.classList.remove('hintg'));}
+  chefSay(`«${el.dataset.word}»: الحرف الملوّن هو التاء، وموقعه ${POS_NAME[p]} (${POS_FORM[p]}) 🍲`,'happy');
+ };
+ chefSay('ثلاث وصفات: التاء في البداية، في الوسط، في النهاية. وزّع الصور! 🍲','idle');
+}
+
+/* ================= المرحلة ٤ ================= */
+function renderStage4(){
+ freshRound();
+ let order=0,served=0;
+ stageEl.innerHTML=stageHead(4,'تقديم الطبق','اقرأ طلب الزبون، ثم اضغط على الطبق الذي يحتوي الكلمات المطلوبة بالضبط!')+
+ kitchenShell(`<div class="serve-window" id="serveWin"><span class="bell">${bellSVG()}</span><b>نافذة التقديم</b><span class="progress-label" style="background:#fff;color:var(--mint-d);border-color:#fff">أطباق قدّمتها: <span id="s4Count">٠</span> / ${arNum(ORDERS.length)}</span></div>
+  <div id="orderHost"></div>`);
+ S.placeHandler=null;S.hoverValid=null;S.tapAction=null;
+ function showOrder(){
+  const o=ORDERS[order];
+  const ticket=o.need.map(w=>`<span class="ticket-item">${picOf(w)}<b>${wordSpans(w,true)}</b></span>`).join('');
+  const plates=shuffle(o.plates.map((p,i)=>({items:p,ok:p.every(w=>o.need.includes(w))&&p.length===o.need.length})));
+  const platesHTML=plates.map((p,i)=>`<div class="dish" role="button" tabindex="0" data-i="${i}" data-ok="${p.ok?1:0}" data-items="${p.items.join(',')}" aria-label="طبق ${arNum(i+1)}" style="animation-delay:${i*70}ms">
+    <span class="dish-num">طبق ${arNum(i+1)}</span>
+    <div class="dish-plate">${plateSVG()}<div class="dish-foods">${p.items.map(w=>picOf(w)).join('')}</div></div>
+    <div class="dish-list">${p.items.map(w=>`<span>${wordSpans(w,true)}</span>`).join('')}</div></div>`).join('');
+  $('#orderHost').innerHTML=`<div class="ticket"><div class="ticket-title">🧾 طلب الزبون رقم ${arNum(order+1)}</div><div class="ticket-items">${ticket}</div></div>
+   <div class="plates" id="plates">${platesHTML}</div>`;
+  sfx.blip();
+ }
+ showOrder();
+ window._dish=(el)=>{
+  if(S.busy||el.classList.contains('cool')||el.classList.contains('served'))return;
+  const o=ORDERS[order];
+  if(el.dataset.ok==='1'){
+   el.classList.add('right','cool');sfx.ding();
+   const win=$('#serveWin');if(win){win.classList.remove('ring');void win.offsetWidth;win.classList.add('ring');}
+   const from=el.getBoundingClientRect(),to=win?center(win):{x:innerWidth/2,y:120};
+   flyVisual(`<div class="dish" style="width:${from.width}px"><div class="dish-plate">${plateSVG()}<div class="dish-foods">${el.dataset.items.split(',').map(w=>picOf(w)).join('')}</div></div></div>`,
+    {x:from.left+from.width/2,y:from.top+from.height/2,w:from.width},{x:to.x,y:to.y},700,()=>{
+      el.classList.add('served');const c=center(win||el);fxSteam(c.x,c.y,8);fxSpark(c.x,c.y,12,'#FFC24A');
+    });
+   served++;$('#s4Count').textContent=arNum(served);
+   awardStars(4,to.x,to.y);
+   chefSay(pick(PRAISE)+` الطابق مطابق للطلب — بالهناء والشفاء! 🍽️`,'cheer');
+   order++;
+   if(order<ORDERS.length){S.busy=true;later(1500,()=>{showOrder();S.busy=false;chefSay('طلب جديد! اقرأ الكلمات المطلوبة अच्छी तरह 👀'.replace('अच्छी तरह','جيداً'),'idle');});}
+   else{S.busy=true;later(1600,()=>{S.done[3]=true;updatePips();showFinale();});}
+  }else{
+   el.classList.add('wrong','cool');sfx.wrong();shakeStage();S.mistakes++;
+   const bad=el.dataset.items.split(',').find(w=>!o.need.includes(w));
+   chefSay(`«${bad}» ليس في الطلب${hasTaa(bad)?'':'، وليس فيه حرف التاء أيضاً'}! طابق الكلمات مع البطاقة 🧾`,'sad');
+   later(800,()=>el.classList.remove('wrong','cool'));
+  }
+ };
+ S.hintHandler=()=>{
+  const el=$$('#plates .dish').find(d=>d.dataset.ok==='1');
+  if(el){el.style.boxShadow='0 0 0 4px rgba(255,194,74,.9),0 5px 0 #8A4E22';later(2200,()=>{el.style.boxShadow='';});
+   chefSay('كل مكونات الطبق الصحيح فيها حرف التاء ويطابق بطاقة الطلب 🧾','happy');}
+ };
+ chefSay('الزبائن ينتظرون! اختر الطبق الذي يطابق الكلمات المطلوبة 🍽️','idle');
+}
+
+/* ================= الطبقات ================= */
+function showOverlay(html,cls,keepToken){if(!keepToken)TOKEN++;overlayEl.className='overlay show '+(cls||'');overlayEl.innerHTML=html;overlayEl.scrollTop=0;}
+function hideOverlay(){overlayEl.classList.remove('show');setTimeout(()=>{if(!overlayEl.classList.contains('show'))overlayEl.innerHTML='';},280);}
+function showIntro(){TOKEN++;S.screen='intro';
+ showOverlay(`<div class="intro-card">
+  <div class="intro-hero">${chefSVG()}</div>
+  <h1 class="intro-title">مطبخ التاء</h1>
+  <div class="intro-sub">الوصفات لا تكتمل إلا بحرف التاء 👨‍🍳</div>
+  <div class="story"><div class="chef" data-mood="happy">${chefSVG()}</div>
+   <p>أهلاً يا شيف! أنا <b>تميم</b> 👨‍🍳<br>
+   مطبخنا لطيف لكن وصفاته لا تكتمل إلا باختيار المكونات التي في اسمها حرف <b>التاء (ت)</b>!<br>
+   اجمع المكونات، قطّع الكلمات، وزّع الوصفات، وقدّم الطبق الصحيح لتحصل على <b>ميدالية الشيف المتميز</b> 🏅</p></div>
+  <div class="chips"><span class="chip"><b>١</b> اختيار المكونات</span><span class="chip"><b>٢</b> تقطيع الكلمات</span><span class="chip"><b>٣</b> وصفة الحروف</span><span class="chip"><b>٤</b> تقديم الطبق</span></div>
+  <span class="chip skill-chip">🎯 المهارة: التعرف على حرف التاء في مفردات مألوفة وربط الصورة بالكتابة</span>
+  <button class="btn-primary big" id="startBtn">🥄 هيا نطبخ!</button>
+  <p class="tiny-note">🔊 أصوات المطبخ والموسيقى — يمكنك كتمها من الزر في الأعلى</p>
+ </div>`,'',true);
+ $('#startBtn').addEventListener('click',()=>{AudioEng.init();if(AudioEng.ctx&&AudioEng.ctx.state==='suspended')AudioEng.ctx.resume();sfx.blip();showTransition(1);});}
+function showTransition(n){TOKEN++;S.stage=n;S.screen='stage';updatePips();const m=STAGE_META[n];sfx.whoosh();
+ showOverlay(`<div class="trans-card"><div class="trans-chef">${chefSVG()}</div>
+  <div class="trans-num">المرحلة ${arNum(n)} من ٤</div><div class="trans-title">${m.t}</div><div class="trans-sub">${m.s}</div></div>`,'trans',true);
+ later(1600,()=>{hideOverlay();renderStage(n);});}
+function renderStage(n){freshRound();S.placeHandler=null;S.hoverValid=null;S.hintHandler=null;S.tapAction=null;window._dish=null;stageEl.innerHTML='';
+ if(n===1)renderStage1();else if(n===2)renderStage2(0);else if(n===3)renderStage3();else renderStage4();
+ window.scrollTo({top:0,behavior:'auto'});}
+function showFinale(){TOKEN++;S.screen='finale';sfx.medal();
+ const rank=S.mistakes<=2?'شيف ذهبي من الدرجة الأولى! 🥇':S.mistakes<=6?'شيف ماهر ومجتهد! 🥈':'شيف مثابر لا يستسلم! 🥉';
+ showOverlay(`<div class="finale-card">
+  <div class="chef" data-mood="cheer">${chefSVG()}</div>
+  ${medalSVG()}
+  <div class="name-banner" id="nameBanner">الشيف الصغير</div>
+  <h2 class="finale-title">حصلت على ميدالية الشيف المتميز! 🏅</h2>
+  <div class="finale-rank">${rank}</div>
+  <div class="finale-stars">⭐ × ${arNum(S.stars)} نجمة طبخ</div>
+  <div class="chips"><span class="chip">٦ مكونات تاء ✓</span><span class="chip">٣ كلمات مقطّعة ✓</span><span class="chip">٩ صور في وصفاتها ✓</span><span class="chip">٣ أطباق مقدّمة ✓</span></div>
+  <input class="name-input" id="nameInput" type="text" maxlength="18" placeholder="اكتب اسم الشيف على الميدالية ✍️" aria-label="اسم الشيف">
+  <button class="btn-primary big" id="againBtn">🔁 وصفة جديدة</button>
+ </div>`,'finale',true);
+ fxConfetti(innerWidth/2,innerHeight*.3,60);fxStars(innerWidth/2,innerHeight*.3,18);
+ const rain=()=>{if(S.screen!=='finale'||!overlayOpen())return;
+  for(let i=0;i<5;i++){if(fx.ps.length>500)break;fx.ps.push({type:'conf',x:rnd(0,innerWidth),y:-14,vx:rnd(-30,30),vy:rnd(60,130),g:46,rot:rnd(0,6.28),vr:rnd(-5,5),w:rnd(5,9),h:rnd(8,14),t:0,life:rnd(2.4,3.6),col:pick(PAL)});}
+  later(430,rain);};later(500,rain);
+ $('#nameInput').addEventListener('input',function(){$('#nameBanner').textContent=this.value.trim()||'الشيف الصغير';});
+ $('#againBtn').addEventListener('click',()=>{sfx.blip();resetGame();});}
+function showConfirm(){sfx.blip();
+ showOverlay(`<div class="confirm-card"><h3>هل نبدأ وصفة جديدة؟ 🔄</h3><p>سيعود المطبخ إلى البداية وتضيع نجومك الحالية!</p>
+  <div class="confirm-btns"><button class="btn-primary" id="yesBtn">نعم، من جديد!</button><button class="btn-plain" id="noBtn">لا، أكمل الطبخ ▶</button></div></div>`,'',true);
+ $('#yesBtn').addEventListener('click',resetGame);
+ $('#noBtn').addEventListener('click',()=>{sfx.blip();hideOverlay();});}
+function resetGame(){
+ freshRound();S.screen='intro';S.stage=0;S.stars=0;S.mistakes=0;S.done=[false,false,false,false];
+ fx.ps.length=0;S.placeHandler=null;S.tapAction=null;window._dish=null;
+ updatePips();starHUD();stageEl.innerHTML='';hideOverlay();showIntro();
+ chefSay('وصفة جديدة! هيا نطبخ من جديد يا شيف 🥄','happy');}
+
+/* ================= محيط حي ================= */
+let ambTick=0;
+setInterval(()=>{
+ if(document.hidden)return;ambTick++;
+ if(S.screen==='stage'&&!overlayOpen()){
+  const pots=$$('.hangpot');
+  if(pots.length&&ambTick%4===0){const p=pick(pots),c=center(p);fxSteam(c.x,c.y+8,3);sfx.clang();}
+ }
+ if(S.screen==='stage'&&!S.busy&&!overlayOpen()&&performance.now()-lastSay>16000&&ambTick%3===1){
+  chefSay(pick(['التاء لها نقطتان فوق جسم مفتوح: ت 🥄','اقرأ اسم الصورة بهدوء ثم ابحث عن التاء 👀','الطاء (ط) والتاء المربوطة (ة) ليستا التاء المفتوحة!','كل مكوّن صحيح يقرّبنا من الميدالية 🏅']),'idle');}
+},5600);
+
+/* ================= الأحداث والتهيئة ================= */
+stageEl.addEventListener('click',e=>{
+ if(overlayOpen())return;
+ if(justDragged||S.busy)return;
+ const dr=e.target.closest('.drag');
+ if(dr&&stageEl.contains(dr)&&!dr.classList.contains('locked')&&!dr.classList.contains('picked')){tapDrag(dr);return;}
+ const zone=e.target.closest('.drop');
+ if(zone){if(zone.classList.contains('filled'))return;
+  if(S.tapAction&&!zone.classList.contains('basket'))return;
+  if(selEl&&S.placeHandler){const t=selEl;clearSel();S.placeHandler(t,zone);}return;}
+ const dish=e.target.closest('.dish');
+ if(dish&&window._dish){window._dish(dish);return;}
+ clearSel();
+});
+document.addEventListener('click',e=>{if(!e.target.closest||!e.target.closest('.drag,.drop,.dish'))clearSel();});
+document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches&&e.target.matches('[role=button]')){e.preventDefault();e.target.click();}});
+$('#logoHat').innerHTML=hatSVG();
+$('#starIco').innerHTML=starSVG();
+$('#chef').innerHTML=chefSVG();
+$('#restartBtn').innerHTML=restartSVG()+'<span class="lbl">من جديد</span>';
+buildPips();updatePips();updateSoundBtn();starHUD();
+resize();window.addEventListener('resize',resize);startLoop();
+document.addEventListener('pointerdown',()=>{AudioEng.init();if(AudioEng.ctx&&AudioEng.ctx.state==='suspended')AudioEng.ctx.resume();},{capture:true});
+$('#soundBtn').addEventListener('click',()=>{S.sound=!S.sound;try{localStorage.setItem('kitchen-taa-sound',S.sound?'1':'0');}catch(e){}AudioEng.init();AudioEng.setOn(S.sound);updateSoundBtn();if(S.sound)sfx.blip();});
+$('#restartBtn').addEventListener('click',()=>{if(S.screen==='intro')return;showConfirm();});
+$('#hintBtn').addEventListener('click',()=>{if(S.busy||overlayOpen()||S.screen!=='stage')return;if(S.hintHandler)S.hintHandler();else chefSay('ابحث عن حرف التاء يا شيف! 🥄','idle');});
+showIntro();chefSay('أهلاً! أنا الشيف تميم 👨‍🍳 لنطبخ وصفات حرف التاء معاً!','happy');
+})();
+</script>
+</body>
+</html>
